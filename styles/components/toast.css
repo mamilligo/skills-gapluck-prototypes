@@ -1,0 +1,24 @@
+/* Toast component styling per DOC 3.12 §3.8 */
+
+.ag-toast {
+  position: fixed;
+  bottom: var(--space-8);
+  inset-inline-start: 50%;       /* RTL-safe centering */
+  transform: translateX(-50%);
+  padding: var(--space-3) var(--space-6);
+  background-color: var(--color-text-primary);
+  color: var(--color-text-inverse);
+  border-radius: var(--radius-full);
+  font-size: var(--text-sm);
+  z-index: var(--z-toast);
+  animation: ag-toast-in var(--transition-base) forwards,
+             ag-toast-out var(--transition-base) 2.5s forwards;
+}
+
+@keyframes ag-toast-in  { from { opacity: 0; transform: translateX(-50%) translateY(8px); } to { opacity: 1; transform: translateX(-50%) translateY(0); } }
+@keyframes ag-toast-out { from { opacity: 1; } to { opacity: 0; } }
+
+/* Bottom tab bar clearance on mobile */
+@media (max-width: 767px) {
+  .ag-toast { bottom: calc(var(--space-8) + 56px); } /* 56px = tab bar height */
+}

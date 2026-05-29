@@ -1,0 +1,24 @@
+/* DataFreshnessIndicator component styling per DOC 3.12 §3.4 */
+
+.ag-freshness {
+  font-size: var(--text-xs);
+  color: var(--color-neutral);
+}
+
+.ag-freshness--stale {
+  color: var(--color-warning);
+}
+
+.ag-freshness--failed {
+  color: var(--color-danger);
+}
+
+.ag-freshness__dot {
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background-color: var(--color-warning);
+  margin-inline-end: var(--space-1);
+  vertical-align: middle;
+}

@@ -1,0 +1,25 @@
+/* SavingsBanner component styling per DOC 3.12 §3.2 */
+
+.ag-savings-banner {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  padding: var(--space-4) var(--space-6);
+  border-radius: var(--radius-xl);
+  width: 100%;
+}
+
+.ag-savings-banner--savings {
+  background-color: var(--color-positive-light);
+  color: var(--color-text-primary);
+}
+
+.ag-savings-banner--neutral {
+  background-color: var(--color-bg-secondary);
+}
+
+.ag-savings-banner__qualifier {
+  font-size: var(--text-xs);
+  color: var(--color-text-secondary);
+  margin-inline-start: auto; /* RTL-safe */
+}

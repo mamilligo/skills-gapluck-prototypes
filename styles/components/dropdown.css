@@ -1,0 +1,22 @@
+/* Dropdown component placeholder styling */
+.ag-dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.ag-dropdown__menu {
+  position: absolute;
+  top: 100%;
+  inset-inline-start: 0;
+  background-color: var(--color-bg-elevated);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-md);
+  z-index: var(--z-dropdown);
+  min-width: 160px;
+  display: none;
+}
+
+.ag-dropdown--open .ag-dropdown__menu {
+  display: block;
+}

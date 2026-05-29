@@ -1,0 +1,22 @@
+/* TierGate component styling per DOC 3.12 §3.6 */
+
+.ag-tier-gate {
+  padding: var(--space-6);
+  border: 1px solid var(--color-warning);
+  border-radius: var(--radius-xl);
+  background-color: var(--color-warning-light);
+}
+
+.ag-tier-gate__limit {
+  font-size: var(--text-sm);
+  color: var(--color-warning);
+  font-weight: var(--font-weight-medium);
+  margin-bottom: var(--space-2);
+}
+
+.ag-tier-gate__actions {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  margin-top: var(--space-4);
+}

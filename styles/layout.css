@@ -1,0 +1,42 @@
+/* Layout helper utility classes for GapLuck */
+
+.ag-container {
+  width: 100%;
+  max-width: var(--bp-xl);
+  margin-inline: auto; /* RTL-safe margin center */
+  padding-inline: var(--space-4);
+}
+
+@media (min-width: 768px) {
+  .ag-container {
+    padding-inline: var(--space-6);
+  }
+}
+
+/* Grid systems */
+.ag-grid-row {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: var(--space-4);
+}
+
+/* Flex systems */
+.ag-flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.ag-flex-column {
+  display: flex;
+  flex-direction: column;
+}
+
+/* Spacing utility helpers */
+.ag-gap-1 { gap: var(--space-1); }
+.ag-gap-2 { gap: var(--space-2); }
+.ag-gap-3 { gap: var(--space-3); }
+.ag-gap-4 { gap: var(--space-4); }
+
+.ag-p-4 { padding: var(--space-4); }
+.ag-p-6 { padding: var(--space-6); }

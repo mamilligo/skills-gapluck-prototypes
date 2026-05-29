@@ -1,0 +1,534 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GapLuck — Interactive Wireframes & Components Prototype Hub</title>
+  <meta name="description" content="Central orchestrator hub for GapLuck's code-first interactive wireframes and reusable UI component prototypes.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Outfit:wght@500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    /* Premium CSS Variables aligned with DOC 3.12 Design System */
+    :root {
+      --color-bg-base: #FFFFFF;
+      --color-bg-surface: #F8F9FA;
+      --color-bg-surface-hover: #F1F3F5;
+      --color-text-primary: #1A1A18;
+      --color-text-secondary: #495057;
+      --color-text-muted: #868E96;
+      --color-border: #DEE2E6;
+      --color-primary: #1D9E75;
+      --color-primary-hover: #157958;
+      --color-primary-glow: rgba(29, 158, 117, 0.15);
+      
+      --font-heading: 'Outfit', sans-serif;
+      --font-body: 'Inter', sans-serif;
+      --radius-lg: 16px;
+      --radius-md: 8px;
+      --radius-sm: 4px;
+      --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    [data-theme="dark"] {
+      --color-bg-base: #1A1A18;
+      --color-bg-surface: #242422;
+      --color-bg-surface-hover: #2C2C29;
+      --color-text-primary: #F0EEE8;
+      --color-text-secondary: #C1C0B9;
+      --color-text-muted: #8C8A84;
+      --color-border: #3A3935;
+      --color-primary: #2DBF8E;
+      --color-primary-hover: #3CD09F;
+      --color-primary-glow: rgba(45, 191, 142, 0.2);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background-color: var(--color-bg-base);
+      color: var(--color-text-primary);
+      font-family: var(--font-body);
+      line-height: 1.6;
+      transition: var(--transition-smooth);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .ag-header {
+      padding: 3rem 2rem 2rem;
+      max-width: 1200px;
+      margin: 0 auto;
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      border-bottom: 1px solid var(--color-border);
+    }
+
+    .ag-brand-container {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+
+    .ag-logo {
+      font-family: var(--font-heading);
+      font-weight: 800;
+      font-size: 2rem;
+      letter-spacing: -0.03em;
+      color: var(--color-primary);
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .ag-logo-dot {
+      width: 8px;
+      height: 8px;
+      background-color: var(--color-primary);
+      border-radius: 50%;
+      display: inline-block;
+      box-shadow: 0 0 12px var(--color-primary);
+    }
+
+    .ag-title {
+      font-family: var(--font-heading);
+      font-size: 2.5rem;
+      font-weight: 700;
+      line-height: 1.2;
+      letter-spacing: -0.02em;
+      background: linear-gradient(135deg, var(--color-text-primary) 0%, var(--color-primary) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-top: 0.5rem;
+    }
+
+    .ag-subtitle {
+      color: var(--color-text-secondary);
+      font-size: 1.1rem;
+      max-width: 600px;
+    }
+
+    .ag-theme-toggle {
+      background: var(--color-bg-surface);
+      border: 1px solid var(--color-border);
+      color: var(--color-text-primary);
+      padding: 0.75rem 1.25rem;
+      border-radius: var(--radius-md);
+      cursor: pointer;
+      font-family: var(--font-body);
+      font-weight: 600;
+      font-size: 0.9rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      transition: var(--transition-smooth);
+    }
+
+    .ag-theme-toggle:hover {
+      background: var(--color-bg-surface-hover);
+      border-color: var(--color-primary);
+      box-shadow: 0 0 15px var(--color-primary-glow);
+    }
+
+    .ag-main {
+      flex: 1;
+      padding: 3rem 2rem;
+      max-width: 1200px;
+      margin: 0 auto;
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      gap: 3.5rem;
+    }
+
+    .ag-section {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+
+    .ag-section-title {
+      font-family: var(--font-heading);
+      font-size: 1.75rem;
+      font-weight: 700;
+      position: relative;
+      padding-bottom: 0.5rem;
+    }
+
+    .ag-section-title::after {
+      content: '';
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      width: 40px;
+      height: 3px;
+      background-color: var(--color-primary);
+      border-radius: var(--radius-sm);
+    }
+
+    .ag-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .ag-card {
+      background: var(--color-bg-surface);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-lg);
+      padding: 2rem;
+      display: flex;
+      flex-direction: column;
+      gap: 1.25rem;
+      transition: var(--transition-smooth);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .ag-card:hover {
+      transform: translateY(-4px);
+      border-color: var(--color-primary);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1), 0 0 20px var(--color-primary-glow);
+    }
+
+    .ag-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 4px;
+      background: linear-gradient(90deg, var(--color-primary) 0%, transparent 100%);
+      opacity: 0;
+      transition: var(--transition-smooth);
+    }
+
+    .ag-card:hover::before {
+      opacity: 1;
+    }
+
+    .ag-card-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+    }
+
+    .ag-badge {
+      font-size: 0.75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      padding: 0.25rem 0.75rem;
+      border-radius: 20px;
+      letter-spacing: 0.05em;
+    }
+
+    .ag-badge-explore {
+      background-color: rgba(45, 191, 142, 0.15);
+      color: var(--color-primary);
+      border: 1px solid rgba(45, 191, 142, 0.3);
+    }
+
+    .ag-badge-comp {
+      background-color: rgba(0, 122, 255, 0.15);
+      color: #007AFF;
+      border: 1px solid rgba(0, 122, 255, 0.3);
+    }
+
+    .ag-card-title {
+      font-family: var(--font-heading);
+      font-size: 1.35rem;
+      font-weight: 600;
+      color: var(--color-text-primary);
+    }
+
+    .ag-card-desc {
+      color: var(--color-text-secondary);
+      font-size: 0.95rem;
+      flex-grow: 1;
+    }
+
+    .ag-card-meta {
+      font-size: 0.8rem;
+      color: var(--color-text-muted);
+      border-top: 1px solid var(--color-border);
+      padding-top: 0.75rem;
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .ag-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      text-decoration: none;
+      color: var(--color-primary);
+      font-weight: 600;
+      font-size: 0.95rem;
+      transition: var(--transition-smooth);
+      margin-top: auto;
+    }
+
+    .ag-link:hover {
+      color: var(--color-primary-hover);
+    }
+
+    .ag-link svg {
+      width: 16px;
+      height: 16px;
+      fill: currentColor;
+      transition: var(--transition-smooth);
+    }
+
+    .ag-link:hover svg {
+      transform: translateX(4px);
+    }
+
+    .ag-footer {
+      background-color: var(--color-bg-surface);
+      border-top: 1px solid var(--color-border);
+      padding: 2rem;
+      text-align: center;
+      font-size: 0.85rem;
+      color: var(--color-text-muted);
+      margin-top: auto;
+    }
+
+    .ag-footer p {
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    .ag-footer a {
+      color: var(--color-primary);
+      text-decoration: none;
+    }
+
+    .ag-footer a:hover {
+      text-decoration: underline;
+    }
+
+    /* RTL specific overrides if browser renders RTL */
+    html[dir="rtl"] .ag-link svg {
+      transform: scaleX(-1);
+    }
+    html[dir="rtl"] .ag-link:hover svg {
+      transform: scaleX(-1) translateX(4px);
+    }
+  </style>
+</head>
+<body>
+
+  <header class="ag-header" id="header">
+    <div class="ag-brand-container">
+      <div class="ag-logo" id="brand-logo">
+        GapLuck<span class="ag-logo-dot"></span>
+      </div>
+      <h1 class="ag-title" id="page-main-heading">Prototyping & Wireframe Hub</h1>
+      <p class="ag-subtitle" id="page-description">
+        Direct interactive access to code-first UI mockups, brand pages, and isolated components using design tokens.
+      </p>
+    </div>
+    <button class="ag-theme-toggle" id="theme-toggle-btn" aria-label="Toggle visual theme">
+      <span id="theme-btn-text">Light Mode</span>
+    </button>
+  </header>
+
+  <main class="ag-main" id="main-content">
+    
+    <!-- Wireframe Pages Section -->
+    <section class="ag-section" id="wireframe-pages" aria-labelledby="section-pages-title">
+      <h2 class="ag-section-title" id="section-pages-title">Interactive Page Wireframes</h2>
+      <div class="ag-grid">
+        
+        <div class="ag-card" id="card-comparison">
+          <div class="ag-card-header">
+            <span class="ag-badge ag-badge-explore">Phase 1</span>
+          </div>
+          <h3 class="ag-card-title">Comparison Page</h3>
+          <p class="ag-card-desc">
+            The core price intelligence table. Includes dynamic retailer price rows, savings banners, and currency conversion triggers.
+          </p>
+          <a href="pages/comparison.html" class="ag-link" id="link-comparison-page">
+            Launch Wireframe
+            <svg viewBox="0 0 24 24"><path d="M5 13h11.86l-5.43 5.43 1.42 1.42L21.14 12l-8.29-8.29-1.42 1.42 5.43 5.43H5v2z"/></svg>
+          </a>
+          <div class="ag-card-meta">
+            <span>Priority: 1</span>
+            <span>Target: Lovable / Code</span>
+          </div>
+        </div>
+
+        <div class="ag-card" id="card-landing">
+          <div class="ag-card-header">
+            <span class="ag-badge ag-badge-explore">Phase 1</span>
+          </div>
+          <h3 class="ag-card-title">Landing / Home Page</h3>
+          <p class="ag-card-desc">
+            The traveler-buyer marketplace storefront. Brand visual assets, search entries, and features showcase.
+          </p>
+          <a href="pages/landing.html" class="ag-link" id="link-landing-page">
+            Launch Wireframe
+            <svg viewBox="0 0 24 24"><path d="M5 13h11.86l-5.43 5.43 1.42 1.42L21.14 12l-8.29-8.29-1.42 1.42 5.43 5.43H5v2z"/></svg>
+          </a>
+          <div class="ag-card-meta">
+            <span>Priority: 2</span>
+            <span>Target: Bolt.new / Code</span>
+          </div>
+        </div>
+
+        <div class="ag-card" id="card-dashboard">
+          <div class="ag-card-header">
+            <span class="ag-badge ag-badge-explore">Phase 1</span>
+          </div>
+          <h3 class="ag-card-title">Dashboard & Watchlist</h3>
+          <p class="ag-card-desc">
+            Product monitoring, price alert thresholds, historical trend charts, and search configuration panel.
+          </p>
+          <a href="pages/dashboard.html" class="ag-link" id="link-dashboard-page">
+            Launch Wireframe
+            <svg viewBox="0 0 24 24"><path d="M5 13h11.86l-5.43 5.43 1.42 1.42L21.14 12l-8.29-8.29-1.42 1.42 5.43 5.43H5v2z"/></svg>
+          </a>
+          <div class="ag-card-meta">
+            <span>Priority: 3</span>
+            <span>Target: Lovable / Code</span>
+          </div>
+        </div>
+
+        <div class="ag-card" id="card-pricing">
+          <div class="ag-card-header">
+            <span class="ag-badge ag-badge-explore">Phase 1</span>
+          </div>
+          <h3 class="ag-card-title">Pricing Page</h3>
+          <p class="ag-card-desc">
+            Paddle-integrated subscription tiers, usage credits buy-in matrices, and tier gates.
+          </p>
+          <a href="pages/pricing.html" class="ag-link" id="link-pricing-page">
+            Launch Wireframe
+            <svg viewBox="0 0 24 24"><path d="M5 13h11.86l-5.43 5.43 1.42 1.42L21.14 12l-8.29-8.29-1.42 1.42 5.43 5.43H5v2z"/></svg>
+          </a>
+          <div class="ag-card-meta">
+            <span>Priority: 4</span>
+            <span>Target: Bolt.new / Code</span>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Isolated Components Section -->
+    <section class="ag-section" id="isolated-components" aria-labelledby="section-components-title">
+      <h2 class="ag-section-title" id="section-components-title">Isolated Design System Components</h2>
+      <div class="ag-grid">
+        
+        <div class="ag-card" id="card-price-row">
+          <div class="ag-card-header">
+            <span class="ag-badge ag-badge-comp">Phase 3</span>
+          </div>
+          <h3 class="ag-card-title">PriceRow Component</h3>
+          <p class="ag-card-desc">
+            Renders pricing entries with currency, tax handling, freshness indicia, and shipping parameters.
+          </p>
+          <a href="components/price-row.html" class="ag-link" id="link-price-row-comp">
+            View Component
+            <svg viewBox="0 0 24 24"><path d="M5 13h11.86l-5.43 5.43 1.42 1.42L21.14 12l-8.29-8.29-1.42 1.42 5.43 5.43H5v2z"/></svg>
+          </a>
+          <div class="ag-card-meta">
+            <span>Spec: DOC 3.12 §3.1</span>
+            <span>RTL & Dark Ready</span>
+          </div>
+        </div>
+
+        <div class="ag-card" id="card-search-bar">
+          <div class="ag-card-header">
+            <span class="ag-badge ag-badge-comp">Phase 3</span>
+          </div>
+          <h3 class="ag-card-title">SearchBar Component</h3>
+          <p class="ag-card-desc">
+            Type-ahead product matcher with loading states and quick-clear actions.
+          </p>
+          <a href="components/search-bar.html" class="ag-link" id="link-search-bar-comp">
+            View Component
+            <svg viewBox="0 0 24 24"><path d="M5 13h11.86l-5.43 5.43 1.42 1.42L21.14 12l-8.29-8.29-1.42 1.42 5.43 5.43H5v2z"/></svg>
+          </a>
+          <div class="ag-card-meta">
+            <span>Spec: DOC 3.12 §3.2</span>
+            <span>RTL & Dark Ready</span>
+          </div>
+        </div>
+
+        <div class="ag-card" id="card-savings-banner">
+          <div class="ag-card-header">
+            <span class="ag-badge ag-badge-comp">Phase 3</span>
+          </div>
+          <h3 class="ag-card-title">SavingsBanner Component</h3>
+          <p class="ag-card-desc">
+            Highlight cards rendering absolute/percentage arbitrage gains relative to regional benchmarks.
+          </p>
+          <a href="components/savings-banner.html" class="ag-link" id="link-savings-banner-comp">
+            View Component
+            <svg viewBox="0 0 24 24"><path d="M5 13h11.86l-5.43 5.43 1.42 1.42L21.14 12l-8.29-8.29-1.42 1.42 5.43 5.43H5v2z"/></svg>
+          </a>
+          <div class="ag-card-meta">
+            <span>Spec: DOC 3.12 §3.3</span>
+            <span>RTL & Dark Ready</span>
+          </div>
+        </div>
+
+        <div class="ag-card" id="card-country-selector">
+          <div class="ag-card-header">
+            <span class="ag-badge ag-badge-comp">Phase 3</span>
+          </div>
+          <h3 class="ag-card-title">CountrySelector Component</h3>
+          <p class="ag-card-desc">
+            Multi-select search dropdown to toggle scraper boundaries across Turkey, UAE, and others.
+          </p>
+          <a href="components/country-selector.html" class="ag-link" id="link-country-selector-comp">
+            View Component
+            <svg viewBox="0 0 24 24"><path d="M5 13h11.86l-5.43 5.43 1.42 1.42L21.14 12l-8.29-8.29-1.42 1.42 5.43 5.43H5v2z"/></svg>
+          </a>
+          <div class="ag-card-meta">
+            <span>Spec: DOC 3.12 §3.4</span>
+            <span>RTL & Dark Ready</span>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="ag-footer" id="footer">
+    <p>
+      GapLuck Prototyping Hub &copy; 2026. Code-first workflow guided by 
+      <a href="PROGRESS.md" id="link-progress-doc">PROGRESS.md</a>. 
+      All components strictly enforce BEM classes and token variables located in 
+      <a href="styles/tokens.css" id="link-tokens-css">tokens.css</a>.
+    </p>
+  </footer>
+
+  <script>
+    const themeToggleBtn = document.getElementById('theme-toggle-btn');
+    const themeBtnText = document.getElementById('theme-btn-text');
+    const htmlElement = document.documentElement;
+
+    // Toggle theme callback
+    themeToggleBtn.addEventListener('click', () => {
+      const currentTheme = htmlElement.getAttribute('data-theme');
+      if (currentTheme === 'dark') {
+        htmlElement.setAttribute('data-theme', 'light');
+        themeBtnText.textContent = 'Dark Mode';
+      } else {
+        htmlElement.setAttribute('data-theme', 'dark');
+        themeBtnText.textContent = 'Light Mode';
+      }
+    });
+  </script>
+</body>
+</html>
