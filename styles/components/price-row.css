@@ -1,38 +1,494 @@
 /* PriceRow component styling per DOC 3.12 §3.1 */
 
-.ag-price-row {
+.ag-price-card {
+  background-color: var(--color-bg-elevated);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-sm);
+  overflow: visible;
+  transition: opacity var(--transition-base);
+}
+
+.ag-price-card--muted {
+  opacity: 0.55;
+}
+
+.ag-price-card__header {
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr auto;
+  grid-template-columns: 1fr auto;
   align-items: center;
-  padding: var(--space-4) var(--space-6);
-  border-bottom: 1px solid var(--color-border);
-  transition: background-color var(--transition-fast);
+  padding: var(--space-4) var(--space-5);
+  gap: var(--space-4);
 }
 
-.ag-price-row--cheapest {
-  background-color: var(--color-positive-light);
+@media (min-width: 768px) {
+  .ag-price-card__header {
+    grid-template-columns: auto 1fr auto auto;
+    gap: var(--space-6);
+  }
 }
 
-.ag-price-row--your-country {
-  border-inline-start: 3px solid var(--color-positive);
+.ag-price-card__country {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  min-width: clamp(80px, 15vw + 40px, 220px);
 }
 
-.ag-price-row--stale .ag-freshness {
-  color: var(--color-warning);
+.ag-price-card__flag {
+  width: var(--layout-flag-size);
+  height: auto;
+  border-radius: var(--radius-sm);
+  display: block;
 }
 
-.ag-price-row--failed .ag-price-row__converted-price {
+.ag-price-card__name {
+  font-family: var(--font-family-heading);
+  font-weight: var(--font-weight-semibold);
+  font-size: var(--text-base);
+  color: var(--color-text-primary);
+}
+
+.ag-price-card__code {
+  font-size: var(--text-xs);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-text-secondary);
+  text-transform: uppercase;
+}
+
+.ag-price-card__retailer-meta {
+  font-size: var(--text-xs);
+  color: var(--color-text-secondary);
+  margin-top: var(--space-1);
+}
+
+.ag-price-card__badge-wrapper {
+  display: block;
+}
+
+.ag-price-card__price-wrapper {
+  text-align: end;
+}
+
+.ag-price-card__price-primary {
+  font-family: var(--font-family-heading);
+  font-weight: var(--font-weight-bold);
+  font-size: var(--text-2xl);
+  color: var(--color-text-primary);
+}
+
+.ag-price-card__price-secondary {
+  font-size: var(--text-xs);
+  color: var(--color-text-secondary);
+  margin-top: var(--space-1);
   display: none;
 }
 
-/* Mobile stacked card layout */
-@media (max-width: 767px) {
-  .ag-price-row {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    border: 1px solid var(--color-border);
-    border-radius: var(--radius-lg);
-    margin-bottom: var(--space-3);
+.ag-price-card__toggle-desktop {
+  display: none;
+}
+
+@media (min-width: 768px) {
+  .ag-price-card__toggle-desktop {
+    display: inline-flex;
   }
 }
+
+.ag-price-card__footer {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  padding: var(--space-3) var(--space-4);
+  border-top: 1px solid var(--color-border);
+}
+
+@media (min-width: 768px) {
+  .ag-price-card__footer {
+    display: none;
+  }
+}
+
+.ag-price-card__btn-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-1);
+  font-size: var(--text-xs);
+  font-weight: var(--font-weight-semibold);
+  padding: var(--space-2) var(--space-3);
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  border: 1px solid transparent;
+  background-color: transparent;
+  color: var(--color-text-secondary);
+  transition: background-color var(--transition-fast), color var(--transition-fast);
+}
+
+.ag-price-card__btn-toggle:hover {
+  background-color: var(--color-bg-secondary);
+  color: var(--color-text-primary);
+}
+
+.ag-price-card__btn-toggle--active {
+  color: var(--color-positive);
+}
+
+.ag-price-card__btn-toggle svg {
+  transition: transform var(--transition-base);
+}
+
+.ag-price-card__btn-toggle--active svg {
+  transform: rotate(180deg);
+}
+
+.ag-price-card__btn-toggle--hidden {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.ag-price-card__btn-action {
+  margin-inline-start: auto;
+}
+
+/* Sub-retailers list styling with grid height transition */
+.ag-retailers-drawer {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+  background-color: var(--color-bg-secondary);
+  position: relative;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.ag-retailers-drawer--open {
+  grid-template-rows: 1fr;
+  pointer-events: auto;
+}
+
+.ag-retailers-drawer::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to bottom, transparent 0%, var(--color-bg-secondary) 80%);
+  backdrop-filter: blur(3px);
+  -webkit-backdrop-filter: blur(3px);
+  pointer-events: none;
+  opacity: 1;
+  transition: opacity 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+  z-index: 1;
+}
+
+.ag-retailers-drawer--open::after {
+  opacity: 0;
+}
+
+.ag-retailers-drawer__inner {
+  min-height: 0;
+  overflow: hidden;
+  padding: 0 var(--space-4) var(--space-2) var(--space-4);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.ag-retailer-row-container {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.ag-retailers-row {
+  display: grid;
+  grid-template-columns: 1.5fr 1fr auto;
+  align-items: center;
+  gap: var(--space-3);
+  padding: var(--space-3) var(--space-4);
+  border-radius: var(--radius-md);
+  background-color: var(--color-bg-elevated);
+  border: 1px solid var(--color-border);
+}
+
+.ag-retailers-row__actions {
+  grid-column: auto;
+  display: flex;
+  flex-direction: column-reverse;
+  align-items: flex-end;
+  gap: var(--space-1);
+  width: auto;
+}
+
+.ag-retailers-row--muted {
+  opacity: 0.55;
+}
+
+/* Landed Cost details layout with grid height transition */
+.ag-landed-drawer {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows 0.35s cubic-bezier(0.4, 0, 0.2, 1), visibility 0.35s;
+  visibility: hidden;
+  background-color: var(--color-bg-secondary);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+}
+
+.ag-landed-drawer--open {
+  grid-template-rows: 1fr;
+  visibility: visible;
+}
+
+.ag-landed-drawer__inner {
+  min-height: 0;
+  overflow: hidden;
+  padding: var(--space-4);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  background-color: var(--color-bg-elevated);
+  margin-top: var(--space-2);
+}
+
+.ag-landed-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-3);
+}
+
+@media (min-width: 768px) {
+  .ag-landed-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.ag-landed-card {
+  padding: var(--space-4);
+  border-radius: var(--radius-md);
+  background-color: var(--color-bg-elevated);
+  border: 1px solid var(--color-border);
+}
+
+.ag-landed-card__subtitle {
+  font-size: var(--text-xs);
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-text-secondary);
+}
+
+.ag-landed-card__title {
+  font-family: var(--font-family-heading);
+  font-weight: var(--font-weight-bold);
+  font-size: var(--text-base);
+  color: var(--color-text-primary);
+  margin-top: var(--space-1);
+  margin-bottom: var(--space-3);
+}
+
+.ag-landed-line {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  padding-block: var(--space-2);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.ag-landed-line:last-child {
+  border-bottom: none;
+}
+
+.ag-landed-line__label {
+  font-size: var(--text-sm);
+  color: var(--color-text-secondary);
+}
+
+.ag-landed-line__label--strong {
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-text-primary);
+}
+
+.ag-landed-line__value {
+  font-family: var(--font-family-base);
+  font-weight: var(--font-weight-medium);
+  font-size: var(--text-sm);
+  color: var(--color-text-primary);
+}
+
+.ag-landed-line__value--strong {
+  font-family: var(--font-family-heading);
+  font-weight: var(--font-weight-bold);
+  font-size: var(--text-base);
+  color: var(--color-positive);
+}
+
+/* Premium Gate Blur Layout */
+.ag-gate-container {
+  position: relative;
+  margin-top: var(--space-3);
+  overflow: hidden;
+  border-radius: var(--radius-lg);
+}
+
+.ag-gate-blur {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  filter: blur(6px);
+  pointer-events: none;
+  user-select: none;
+}
+
+.ag-gate-overlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: var(--space-4);
+  border-radius: var(--radius-xl);
+  background: linear-gradient(180deg, color-mix(in srgb, var(--color-bg-primary) 40%, transparent) 0%, var(--color-bg-primary) 70%);
+}
+
+.ag-gate-card {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-2);
+  padding: var(--space-5);
+  border-radius: var(--radius-xl);
+  background-color: var(--color-bg-elevated);
+  border: 1px solid var(--color-border);
+  box-shadow: var(--shadow-lg);
+  max-width: 440px;
+  width: 100%;
+}
+
+.ag-gate-card__icon {
+  color: var(--color-positive);
+  margin-bottom: var(--space-1);
+}
+
+.ag-gate-card__title {
+  font-family: var(--font-family-heading);
+  font-weight: var(--font-weight-bold);
+  font-size: var(--text-base);
+  color: var(--color-text-primary);
+  margin: 0;
+}
+
+/* Single-row Retailer Cards (e.g. Turkey section) */
+.ag-price-card--retailer .ag-price-card__header {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  row-gap: var(--space-3);
+  column-gap: var(--space-4);
+  align-items: center;
+  padding: var(--space-4) var(--space-5);
+}
+
+.ag-price-card--retailer .ag-price-card__info-group {
+  grid-column: 1;
+}
+
+.ag-price-card--retailer .ag-price-card__price-wrapper {
+  grid-column: 2;
+  text-align: end;
+}
+
+.ag-price-card--retailer .ag-price-card__btn-action {
+  grid-column: 1 / span 2;
+  width: 100%;
+}
+
+.ag-price-card__name-row {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  flex-wrap: wrap;
+}
+
+/* Out of Stock styling */
+.ag-price-card__out-of-stock {
+  display: block;
+  font-size: 0.65rem;
+  font-weight: var(--font-weight-bold);
+  color: var(--color-danger);
+  letter-spacing: 0.08em;
+  margin-bottom: var(--space-1);
+  text-transform: uppercase;
+}
+
+.ag-price-card--out-of-stock .ag-price-card__price-primary {
+  color: var(--color-text-secondary);
+}
+
+@media (min-width: 768px) {
+  .ag-price-card--retailer .ag-price-card__header {
+    grid-template-columns: 1fr auto auto;
+    row-gap: 0;
+  }
+  
+  .ag-price-card--retailer .ag-price-card__info-group {
+    grid-column: 1;
+  }
+  
+  .ag-price-card--retailer .ag-price-card__price-wrapper {
+    grid-column: 2;
+  }
+  
+  .ag-price-card--retailer .ag-price-card__btn-action {
+    grid-column: 3;
+    width: auto;
+  }
+}
+
+/* Margin offset for inline badges inside names */
+.ag-price-card__name .ag-badge {
+  margin-inline-start: var(--space-2);
+}
+
+/* Mobile-only toggle buttons */
+.ag-price-card__toggle-mobile {
+  display: inline-flex;
+}
+
+@media (min-width: 768px) {
+  .ag-price-card__toggle-mobile {
+    display: none;
+  }
+}
+
+/* Three-column centered layout for summary headers */
+.ag-price-card__header--summary {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  padding: var(--space-4) var(--space-5);
+  gap: var(--space-4);
+}
+
+.ag-price-card__header--summary .ag-price-card__btn-toggle {
+  justify-self: center;
+}
+
+/* Best deal visible row — same container style as retailers drawer */
+.ag-price-card__best-deal {
+  border-top: 1px solid var(--color-border);
+  background-color: var(--color-bg-secondary);
+  padding: var(--space-3) var(--space-4) var(--space-2) var(--space-4);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.ag-price-card__toggle-container {
+  display: flex;
+  justify-content: center;
+  padding: 0 var(--space-4) var(--space-3) var(--space-4);
+  background-color: var(--color-bg-secondary);
+  border-bottom-left-radius: calc(var(--radius-lg) - 1px);
+  border-bottom-right-radius: calc(var(--radius-lg) - 1px);
+}
+
+
+

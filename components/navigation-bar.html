@@ -3,19 +3,83 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>GapLuck — NavigationBar Component</title>
+  <title>GapLuck - NavigationBar Component</title>
   <meta name="description" content="Isolated view of the NavigationBar component.">
   <link rel="stylesheet" href="../styles/tokens.css">
   <link rel="stylesheet" href="../styles/reset.css">
   <link rel="stylesheet" href="../styles/base.css">
   <link rel="stylesheet" href="../styles/layout.css">
   <link rel="stylesheet" href="../styles/utilities.css">
+  <link rel="stylesheet" href="../styles/components/navigation.css">
+  <link rel="stylesheet" href="../styles/components/buttons.css">
 </head>
 <body>
   <div class="ag-container ag-p-6">
-    <a href="../index.html">← Back to Hub</a>
-    <h2>NavigationBar Component Placeholder</h2>
-    <p>Provides top navbar links and mobile bottom navigation tab items.</p>
+    <a href="../index.html" style="display: block; margin-bottom: var(--space-4);">← Back to Hub</a>
+    
+    <header class="ag-navbar">
+      <a href="#" class="ag-navbar__logo-container">
+        <!-- SVG Logo -->
+        <svg class="ag-navbar__logo" width="48" height="48" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect x="6" y="18" width="22" height="8" rx="2" fill="var(--color-text-primary)"/>
+          <rect x="36" y="38" width="22" height="8" rx="2" fill="var(--color-text-primary)"/>
+          <path d="M26 22 L38 42" stroke="var(--color-positive)" stroke-width="5" stroke-linecap="round"/>
+          <circle cx="32" cy="32" r="4.5" fill="var(--color-positive)"/>
+        </svg>
+        <span class="ag-navbar__logo-text">Gap<span class="ag-navbar__logo-text--highlight">Luck</span></span>
+      </a>
+
+      <div class="ag-navbar__search-wrapper">
+        <span class="ag-navbar__search-icon" aria-hidden="true">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="11" cy="11" r="8"></circle>
+            <path d="m21 21-4.34-4.34"></path>
+          </svg>
+        </span>
+        <input type="search" placeholder="Search products..." class="ag-navbar__search-input" aria-label="Search products" value="iPhone 17 Pro Max">
+      </div>
+
+      <div class="ag-navbar__actions">
+        <button class="ag-navbar__toggle-btn" aria-label="Toggle dark mode">
+          <svg class="ag-theme-icon-sun" viewBox="0 0 24 24">
+            <circle cx="12" cy="12" r="5"></circle>
+            <line x1="12" y1="1" x2="12" y2="3"></line>
+            <line x1="12" y1="21" x2="12" y2="23"></line>
+            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+            <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+            <line x1="1" y1="12" x2="3" y2="12"></line>
+            <line x1="21" y1="12" x2="23" y2="12"></line>
+            <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+            <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+          </svg>
+          <svg class="ag-theme-icon-moon" viewBox="0 0 24 24">
+            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+          </svg>
+        </button>
+        <button class="ag-navbar__toggle-btn" aria-label="Toggle RTL">RTL</button>
+        <button class="ag-navbar__btn-signin">Sign in</button>
+        <button class="ag-navbar__btn-register">Register</button>
+      </div>
+
+      <div class="ag-navbar__mobile-actions">
+        <button class="ag-navbar__toggle-btn" aria-label="Toggle dark mode">
+          <svg class="ag-theme-icon-sun" viewBox="0 0 24 24">
+            <circle cx="12" cy="12" r="5"></circle>
+            <line x1="12" y1="1" x2="12" y2="3"></line>
+            <line x1="12" y1="21" x2="12" y2="23"></line>
+            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+            <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+            <line x1="1" y1="12" x2="3" y2="12"></line>
+            <line x1="21" y1="12" x2="23" y2="12"></line>
+            <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+            <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+          </svg>
+          <svg class="ag-theme-icon-moon" viewBox="0 0 24 24">
+            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+          </svg>
+        </button>
+      </div>
+    </header>
   </div>
 </body>
 </html>

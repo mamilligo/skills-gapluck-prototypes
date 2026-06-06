@@ -3,19 +3,150 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>GapLuck — PriceRow Component</title>
+  <title>GapLuck - PriceRow Component</title>
   <meta name="description" content="Isolated view of the PriceRow component in all states.">
   <link rel="stylesheet" href="../styles/tokens.css">
   <link rel="stylesheet" href="../styles/reset.css">
   <link rel="stylesheet" href="../styles/base.css">
   <link rel="stylesheet" href="../styles/layout.css">
   <link rel="stylesheet" href="../styles/utilities.css">
+  <link rel="stylesheet" href="../styles/components/price-row.css">
+  <link rel="stylesheet" href="../styles/components/buttons.css">
+  <link rel="stylesheet" href="../styles/components/badge.css">
 </head>
 <body>
   <div class="ag-container ag-p-6">
-    <a href="../index.html">← Back to Hub</a>
-    <h2>PriceRow Component Placeholder</h2>
-    <p>Displays individual retailer pricing rows with options to expand landed cost breakdowns.</p>
+    <a href="../index.html" style="display: block; margin-bottom: var(--space-4);">← Back to Hub</a>
+    
+    <h3 style="margin-bottom: var(--space-3);">1. Worldwide Country Card Row (Default State)</h3>
+    <div class="ag-price-card">
+      <div class="ag-price-card__header">
+        <div class="ag-price-card__country">
+          <img class="ag-price-card__flag" src="../assets/flags/ae.svg" alt="UAE flag">
+          <div>
+            <div class="ag-price-card__name">
+              UAE <span class="ag-price-card__code">AE</span>
+            </div>
+            <div class="ag-price-card__retailer-meta">
+              Apple Store UAE · 5h ago
+            </div>
+          </div>
+        </div>
+        <div class="ag-price-card__badge-wrapper">
+          <span class="ag-badge">Official</span>
+        </div>
+        <div class="ag-price-card__price-wrapper">
+          <div class="ag-price-card__price-primary">₺39,200</div>
+          <div class="ag-price-card__price-secondary">(~AED 3,159)</div>
+        </div>
+        <button class="ag-price-card__btn-toggle">
+          3 sellers
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="6 9 12 15 18 9"></polyline>
+          </svg>
+        </button>
+      </div>
+
+      <div class="ag-price-card__footer">
+        <button class="ag-price-card__btn-toggle ag-price-card__btn-toggle--active">
+          Landed cost
+          <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="6 9 12 15 18 9"></polyline>
+          </svg>
+        </button>
+        <button class="ag-price-card__btn-toggle md:hidden">
+          3 sellers
+          <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="6 9 12 15 18 9"></polyline>
+          </svg>
+        </button>
+        <button class="ag-btn ag-btn--secondary ag-price-card__btn-action" style="min-height: auto; padding: var(--space-2) var(--space-3); font-size: var(--text-xs);">
+          Go to store
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="5" y1="12" x2="19" y2="12"></line>
+            <polyline points="12 5 19 12 12 19"></polyline>
+          </svg>
+        </button>
+      </div>
+    </div>
+
+    <h3 style="margin-top: var(--space-6); margin-bottom: var(--space-3);">2. Landed Cost expanded drawer</h3>
+    <div class="ag-landed-drawer">
+      <div class="ag-landed-grid">
+        <div class="ag-landed-card">
+          <div class="ag-landed-card__subtitle">Via Shipping Services</div>
+          <div class="ag-landed-card__title">Traditional Shipping</div>
+          <div class="ag-landed-line">
+            <span class="ag-landed-line__label">Product price</span>
+            <span class="ag-landed-line__value">≈₺39,200 (~AED 3,159)</span>
+          </div>
+          <div class="ag-landed-line">
+            <span class="ag-landed-line__label">Estimated Import Duty</span>
+            <span class="ag-landed-line__value">+₺7,056</span>
+          </div>
+          <div class="ag-landed-line">
+            <span class="ag-landed-line__label">Estimated VAT</span>
+            <span class="ag-landed-line__value">+₺7,840</span>
+          </div>
+          <div class="ag-landed-line">
+            <span class="ag-landed-line__label">Estimated Shipping (DHL)</span>
+            <span class="ag-landed-line__value">+₺1,200</span>
+          </div>
+          <div class="ag-landed-line">
+            <span class="ag-landed-line__label ag-landed-line__label--strong">Estimated Total Landed Cost</span>
+            <span class="ag-landed-line__value ag-landed-line__value--strong">≈₺55,296</span>
+          </div>
+        </div>
+
+        <div class="ag-landed-card">
+          <div class="ag-landed-card__subtitle">Via Traveler / Passenger</div>
+          <div class="ag-landed-card__title">Peer-to-Peer Shipping</div>
+          <div class="ag-landed-line">
+            <span class="ag-landed-line__label">Product price</span>
+            <span class="ag-landed-line__value">≈₺39,200 (~AED 3,159)</span>
+          </div>
+          <div class="ag-landed-line">
+            <span class="ag-landed-line__label">Traveler Fee</span>
+            <span class="ag-landed-line__value">+₺3,920</span>
+          </div>
+          <div class="ag-landed-line">
+            <span class="ag-landed-line__label">Platform Service Fee</span>
+            <span class="ag-landed-line__value">+₺2,352</span>
+          </div>
+          <div class="ag-landed-line">
+            <span class="ag-landed-line__label ag-landed-line__label--strong">Total Landed Cost</span>
+            <span class="ag-landed-line__value ag-landed-line__value--strong">≈₺45,472</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <h3 style="margin-top: var(--space-6); margin-bottom: var(--space-3);">3. Premium Gate Row count limit (Blurred)</h3>
+    <div class="ag-gate-container">
+      <div class="ag-gate-blur">
+        <div class="ag-price-card">
+          <div class="ag-price-card__header">
+            <div class="ag-price-card__country">
+              <img class="ag-price-card__flag" src="../assets/flags/gb.svg" alt="UK flag">
+              <div class="ag-price-card__name">United Kingdom</div>
+            </div>
+            <div class="ag-price-card__price-wrapper">
+              <div class="ag-price-card__price-primary">₺41,100</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="ag-gate-overlay">
+        <div class="ag-gate-card">
+          <svg class="ag-gate-card__icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+            <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+          </svg>
+          <h4 class="ag-gate-card__title">Upgrade to Premium ($7/mo) to unlock remaining 8 countries</h4>
+          <button class="ag-btn ag-btn--primary" style="margin-top: var(--space-2); min-height: auto; padding: var(--space-2) var(--space-4);">Upgrade to Premium</button>
+        </div>
+      </div>
+    </div>
   </div>
 </body>
 </html>

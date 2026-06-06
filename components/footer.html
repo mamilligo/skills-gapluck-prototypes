@@ -3,19 +3,39 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>GapLuck — Footer Component</title>
+  <title>GapLuck - Footer Component</title>
   <meta name="description" content="Isolated view of the Footer component.">
   <link rel="stylesheet" href="../styles/tokens.css">
   <link rel="stylesheet" href="../styles/reset.css">
   <link rel="stylesheet" href="../styles/base.css">
   <link rel="stylesheet" href="../styles/layout.css">
   <link rel="stylesheet" href="../styles/utilities.css">
+  <link rel="stylesheet" href="../styles/components/footer.css">
 </head>
 <body>
   <div class="ag-container ag-p-6">
-    <a href="../index.html">← Back to Hub</a>
-    <h2>Footer Component Placeholder</h2>
-    <p>Provides directory links, legal terms, and language/currency selectors.</p>
+    <a href="../index.html" style="display: block; margin-bottom: var(--space-4);">← Back to Hub</a>
+    
+    <footer class="ag-footer">
+      <div class="ag-container ag-footer__container">
+        <div class="ag-footer__logo-block">
+          <!-- Logo SVG -->
+          <svg width="36" height="36" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect width="40" height="40" rx="8" fill="var(--color-positive)" />
+            <path d="M12 28V16M20 28V12M28 28V20" stroke="#FFFFFF" stroke-width="3" stroke-linecap="round" />
+          </svg>
+          <div class="ag-footer__disclaimer">
+            Prices are scraped from public retailer pages and refreshed periodically. Conversions use mid-market rates. Landed costs (duty, VAT, shipping) are estimates only - actual fees vary by carrier, customs valuation and traveler eligibility. Verify before purchase.
+          </div>
+        </div>
+        <div class="ag-footer__links">
+          <a href="#" class="ag-footer__link">Methodology</a>
+          <a href="#" class="ag-footer__link">Privacy</a>
+          <a href="#" class="ag-footer__link">Terms</a>
+          <a href="#" class="ag-footer__link">Contact</a>
+        </div>
+      </div>
+    </footer>
   </div>
 </body>
 </html>
