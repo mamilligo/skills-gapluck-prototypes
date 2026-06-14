@@ -402,6 +402,7 @@
   text-align: center;
   padding: var(--space-4);
   border-radius: var(--radius-xl);
+  background: var(--color-bg-primary);
   background: linear-gradient(180deg, color-mix(in srgb, var(--color-bg-primary) 40%, transparent) 0%, var(--color-bg-primary) 70%);
 }
 
@@ -460,7 +461,17 @@
   display: inline-flex;
   align-items: center;
   gap: var(--space-2);
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
+  white-space: nowrap;
+}
+
+.ag-price-card__name-row .ag-price-card__name {
+  flex: 0 0 auto;
+  white-space: nowrap;
+}
+
+.ag-price-card__name-row .ag-badge {
+  flex: 0 0 auto;
 }
 
 /* Out of Stock styling */
@@ -563,5 +574,82 @@
   display: none;
 }
 
+/* Worldwide panel flat card decomposition — mirrors local region side panel */
+.ag-section--worldwide > .ag-price-card-list > .ag-price-card {
+  background-color: transparent;
+  border: none;
+  box-shadow: none;
+  border-radius: 0;
+  overflow: visible;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
 
+.ag-section--worldwide > .ag-price-card-list > .ag-price-card > .ag-price-card__header {
+  background-color: var(--color-bg-elevated);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-sm);
+  position: sticky;
+  top: calc(var(--header-height) + var(--section-header-height));
+  z-index: 9;
+  border-bottom: none;
+  border-bottom-left-radius: calc(var(--radius-lg) - 1px);
+  border-bottom-right-radius: calc(var(--radius-lg) - 1px);
+  min-height: 40px;
+  padding: var(--space-2) var(--space-3);
+  box-sizing: border-box;
+  align-items: center;
+}
+
+.ag-section--worldwide > .ag-price-card-list > .ag-price-card .ag-price-card__best-deal {
+  background-color: transparent;
+  padding: 0;
+  border-top: none;
+  gap: var(--space-2);
+}
+
+.ag-section--worldwide > .ag-price-card-list > .ag-price-card .ag-retailers-drawer {
+  background-color: transparent;
+  grid-template-rows: 1fr;
+  pointer-events: auto;
+  overflow: visible;
+}
+
+.ag-section--worldwide > .ag-price-card-list > .ag-price-card .ag-retailers-drawer__inner {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  padding: 0;
+}
+
+.ag-section--worldwide > .ag-price-card-list > .ag-price-card .ag-retailers-drawer::after {
+  display: none;
+}
+
+.ag-section--worldwide > .ag-price-card-list > .ag-price-card .ag-price-card__toggle-container {
+  display: none;
+}
+
+.ag-section--worldwide > .ag-price-card-list > .ag-price-card .ag-retailers-row {
+  background-color: var(--color-bg-elevated);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-sm);
+  min-height: 72px;
+  padding: var(--space-2) var(--space-2-5);
+  gap: var(--space-2-5);
+  box-sizing: border-box;
+  align-items: center;
+}
+
+/* Comparison side panel: lock retailer card height to worldwide row rhythm on all viewports */
+.ag-comparison-layout .ag-price-card--retailer {
+  min-height: 0;
+}
+
+.ag-comparison-layout .ag-price-card--region {
+  min-height: 0;
+}
 

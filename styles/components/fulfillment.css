@@ -50,6 +50,7 @@
   width: 40px;
   height: 40px;
   border-radius: var(--radius-md);
+  background-color: var(--color-positive-light);
   background-color: color-mix(in srgb, var(--color-positive) 12%, transparent);
   color: var(--color-positive);
   margin-bottom: var(--space-4);
@@ -86,6 +87,7 @@
 }
 
 .ag-fulfillment-card__btn:hover {
+  background-color: var(--color-bg-secondary);
   background-color: color-mix(in srgb, var(--color-positive) 5%, transparent);
   border-color: var(--color-positive);
 }

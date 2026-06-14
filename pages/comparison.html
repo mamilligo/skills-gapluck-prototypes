@@ -5,18 +5,18 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>GapLuck - Comparison Page Wireframe</title>
   <meta name="description" content="Interactive wireframe of the GapLuck Comparison Page.">
-  <link rel="stylesheet" href="../styles/tokens.css">
-  <link rel="stylesheet" href="../styles/reset.css">
-  <link rel="stylesheet" href="../styles/base.css">
-  <link rel="stylesheet" href="../styles/layout.css">
-  <link rel="stylesheet" href="../styles/utilities.css">
-  <link rel="stylesheet" href="../styles/components/buttons.css">
-  <link rel="stylesheet" href="../styles/components/badge.css">
-  <link rel="stylesheet" href="../styles/components/navigation.css">
-  <link rel="stylesheet" href="../styles/components/savings-banner.css">
-  <link rel="stylesheet" href="../styles/components/price-row.css">
-  <link rel="stylesheet" href="../styles/components/fulfillment.css">
-  <link rel="stylesheet" href="../styles/components/footer.css">
+  <link rel="stylesheet" href="../styles/tokens.css?v=1.1">
+  <link rel="stylesheet" href="../styles/reset.css?v=1.1">
+  <link rel="stylesheet" href="../styles/base.css?v=1.1">
+  <link rel="stylesheet" href="../styles/layout.css?v=1.1">
+  <link rel="stylesheet" href="../styles/utilities.css?v=1.1">
+  <link rel="stylesheet" href="../styles/components/buttons.css?v=1.1">
+  <link rel="stylesheet" href="../styles/components/badge.css?v=1.1">
+  <link rel="stylesheet" href="../styles/components/navigation.css?v=1.1">
+  <link rel="stylesheet" href="../styles/components/savings-banner.css?v=1.1">
+  <link rel="stylesheet" href="../styles/components/price-row.css?v=1.1">
+  <link rel="stylesheet" href="../styles/components/fulfillment.css?v=1.1">
+  <link rel="stylesheet" href="../styles/components/footer.css?v=1.1">
 </head>
 <body>
   
@@ -68,6 +68,17 @@
         <option value="ar">AR</option>
       </select>
       
+      <!-- Region Dropdown -->
+      <select id="region-selector" class="ag-navbar__select" aria-label="Change region">
+        <option value="turkey">TR</option>
+        <option value="uae">AE</option>
+        <option value="usa">US</option>
+        <option value="germany">DE</option>
+        <option value="japan">JP</option>
+        <option value="uk">GB</option>
+        <option value="canada">CA</option>
+      </select>
+      
       <!-- Currency Dropdown -->
       <select id="currency-selector" class="ag-navbar__select" aria-label="Change currency">
         <option value="TRY">TRY</option>
@@ -111,6 +122,15 @@
         <option value="en">EN</option>
         <option value="tr">TR</option>
         <option value="ar">AR</option>
+      </select>
+      <select id="region-selector-mobile" class="ag-navbar__select" aria-label="Change region">
+        <option value="turkey">TR</option>
+        <option value="uae">AE</option>
+        <option value="usa">US</option>
+        <option value="germany">DE</option>
+        <option value="japan">JP</option>
+        <option value="uk">GB</option>
+        <option value="canada">CA</option>
       </select>
       <select id="currency-selector-mobile" class="ag-navbar__select" aria-label="Change currency">
         <option value="TRY">TRY</option>
@@ -234,7 +254,6 @@
         <div class="ag-savings-banner__label" data-i18n="cheapest_worldwide">Cheapest worldwide</div>
         <h3 class="ag-savings-banner__title">
           <span id="savings-message">UAE · Save <span class="ag-savings-banner__amount">₺18,400 (35%)</span> vs Turkey</span>
-          <span class="ag-savings-banner__approximate" data-i18n="landed_cost">[approximate]</span>
         </h3>
       </div>
       <button class="ag-savings-banner__btn">
@@ -251,14 +270,14 @@
     <!-- ============= YOUR COUNTRY SECTION ============= -->
     <section class="ag-section ag-section--country">
       <h2 class="ag-section__title">
-        <img class="ag-price-card__flag" src="../assets/flags/tr.svg" alt="Turkey flag">
-        <span><span data-i18n="your_country">Your country</span> · Turkey</span>
+        <img class="ag-price-card__flag" src="../assets/flags/tr.svg" alt="Turkey flag" id="local-region-flag">
+        <span><span data-i18n="your_country">Your country</span> · <span id="local-region-name">Turkey</span></span>
       </h2>
       
-      <div class="ag-price-card-list">
+      <div class="ag-price-card-list" id="local-retailer-list">
 
-        <!-- Turkey Seller 1: Apple Store (Official) -->
-        <div class="ag-price-card ag-price-card--retailer">
+        <!-- Turkey - Apple Store Turkey -->
+        <div class="ag-price-card ag-price-card--retailer" data-local-retailer="apple" data-in-stock="true" data-tier="1" data-country="turkey">
           <div class="ag-price-card__header">
             <div class="ag-price-card__info-group">
               <div class="ag-price-card__name-row">
@@ -276,8 +295,8 @@
               <div class="ag-price-card__retailer-meta" data-i18n="updated" data-i18n-val="3h ago">Updated 3h ago</div>
             </div>
             <div class="ag-price-card__price-wrapper">
-              <div id="price-turkey" class="ag-price-card__price-primary" data-price="52000" data-local="TRY">₺52,000</div>
-              <div id="price-turkey-secondary" class="ag-price-card__price-secondary" data-price="52000" data-local="TRY"></div>
+              <div class="ag-price-card__price-primary" data-price="52000" data-local="TRY" data-price-key="turkey">₺52,000</div>
+              <div class="ag-price-card__price-secondary" data-price="52000" data-local="TRY" data-price-key="turkey"></div>
             </div>
             <a href="#" class="ag-btn ag-btn--secondary ag-btn--small ag-price-card__btn-action">
               <span data-i18n="go_to_store">Go to store</span>
@@ -289,8 +308,8 @@
           </div>
         </div>
 
-        <!-- Turkey Seller 2: Hepsiburada (Verified - Featured/Sponsored) -->
-        <div class="ag-price-card ag-price-card--retailer">
+        <!-- Turkey - Hepsiburada -->
+        <div class="ag-price-card ag-price-card--retailer" data-local-retailer="hepsiburada" data-in-stock="true" data-tier="3" data-country="turkey">
           <div class="ag-price-card__header">
             <div class="ag-price-card__info-group">
               <div class="ag-price-card__name-row">
@@ -309,21 +328,21 @@
               <div class="ag-price-card__retailer-meta" data-i18n="updated" data-i18n-val="1h ago">Updated 1h ago</div>
             </div>
             <div class="ag-price-card__price-wrapper">
-              <div id="price-turkey-hepsiburada" class="ag-price-card__price-primary" data-price="48500" data-local="TRY">₺48,500</div>
-              <div id="price-turkey-hepsiburada-secondary" class="ag-price-card__price-secondary" data-price="48500" data-local="TRY"></div>
+              <div class="ag-price-card__price-primary" data-price="48500" data-local="TRY" data-price-key="turkey_hepsiburada">₺48,500</div>
+              <div class="ag-price-card__price-secondary" data-price="48500" data-local="TRY" data-price-key="turkey_hepsiburada"></div>
             </div>
-            <a href="#" class="ag-btn ag-btn--primary ag-btn--small ag-price-card__btn-action">
+            <div class="ag-btn ag-btn--primary ag-btn--small ag-price-card__btn-action">
               <span data-i18n="go_to_store">Go to store</span>
               <svg class="ag-rtl-flip" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                 <line x1="5" y1="12" x2="19" y2="12"></line>
                 <polyline points="12 5 19 12 12 19"></polyline>
               </svg>
-            </a>
+            </div>
           </div>
         </div>
 
-        <!-- Turkey Seller 3: Trendyol (Verified - Warning: Verification due) -->
-        <div class="ag-price-card ag-price-card--retailer">
+        <!-- Turkey - Trendyol -->
+        <div class="ag-price-card ag-price-card--retailer" data-local-retailer="trendyol" data-in-stock="true" data-tier="3" data-country="turkey">
           <div class="ag-price-card__header">
             <div class="ag-price-card__info-group">
               <div class="ag-price-card__name-row">
@@ -342,8 +361,8 @@
               <div class="ag-price-card__retailer-meta" data-i18n="updated" data-i18n-val="2h ago">Updated 2h ago</div>
             </div>
             <div class="ag-price-card__price-wrapper">
-              <div id="price-turkey-trendyol" class="ag-price-card__price-primary" data-price="49200" data-local="TRY">₺49,200</div>
-              <div id="price-turkey-trendyol-secondary" class="ag-price-card__price-secondary" data-price="49200" data-local="TRY"></div>
+              <div class="ag-price-card__price-primary" data-price="49200" data-local="TRY" data-price-key="turkey_trendyol">₺49,200</div>
+              <div class="ag-price-card__price-secondary" data-price="49200" data-local="TRY" data-price-key="turkey_trendyol"></div>
             </div>
             <a href="#" class="ag-btn ag-btn--secondary ag-btn--small ag-price-card__btn-action">
               <span data-i18n="go_to_store">Go to store</span>
@@ -355,8 +374,8 @@
           </div>
         </div>
 
-        <!-- Turkey Seller 4: MediaMarkt TR (Authorized - Out of Stock) -->
-        <div class="ag-price-card ag-price-card--retailer ag-price-card--out-of-stock">
+        <!-- Turkey - MediaMarkt TR (Out of Stock) -->
+        <div class="ag-price-card ag-price-card--retailer ag-price-card--out-of-stock" data-local-retailer="mediamarkt" data-in-stock="false" data-tier="2" data-country="turkey">
           <div class="ag-price-card__header">
             <div class="ag-price-card__info-group">
               <div class="ag-price-card__name-row">
@@ -375,8 +394,8 @@
             </div>
             <div class="ag-price-card__price-wrapper">
               <span class="ag-price-card__out-of-stock" data-i18n="out_of_stock">Out of Stock</span>
-              <div id="price-turkey-mediamarkt" class="ag-price-card__price-primary" data-price="50100" data-local="TRY">₺50,100</div>
-              <div id="price-turkey-mediamarkt-secondary" class="ag-price-card__price-secondary" data-price="50100" data-local="TRY"></div>
+              <div class="ag-price-card__price-primary" data-price="50100" data-local="TRY" data-price-key="turkey_mediamarkt">₺50,100</div>
+              <div class="ag-price-card__price-secondary" data-price="50100" data-local="TRY" data-price-key="turkey_mediamarkt"></div>
             </div>
             <a href="#" class="ag-btn ag-btn--outline-muted ag-btn--small ag-price-card__btn-action">
               <span data-i18n="go_to_store">Go to store</span>
@@ -389,10 +408,10 @@
         </div>
 
         <!-- Turkey Premium Gate Blur (5th, 6th, and 7th retailers: locked) -->
-        <div class="ag-gate-container">
+        <div class="ag-gate-container" data-country="turkey">
           <div class="ag-gate-blur">
             <!-- Card 5: Teknosa -->
-            <div class="ag-price-card ag-price-card--retailer">
+            <div class="ag-price-card ag-price-card--retailer" data-local-retailer="teknosa" data-in-stock="true" data-tier="2" data-country="turkey">
               <div class="ag-price-card__header">
                 <div class="ag-price-card__info-group">
                   <div class="ag-price-card__name-row">
@@ -407,11 +426,11 @@
                     </span>
                   </div>
                   <div class="ag-price-card__seller-name">Teknosa A.Ş.</div>
-                  <div class="ag-price-card__retailer-meta">Updated 4h ago</div>
+                  <div class="ag-price-card__retailer-meta" data-i18n="updated" data-i18n-val="4h ago">Updated 4h ago</div>
                 </div>
                 <div class="ag-price-card__price-wrapper">
-                  <div id="price-turkey-teknosa-primary" class="ag-price-card__price-primary" data-price="49500" data-local="TRY">₺49,500</div>
-                  <div id="price-turkey-teknosa-secondary" class="ag-price-card__price-secondary" data-price="49500" data-local="TRY"></div>
+                  <div class="ag-price-card__price-primary" data-price="49500" data-local="TRY" data-price-key="turkey_teknosa">₺49,500</div>
+                  <div class="ag-price-card__price-secondary" data-price="49500" data-local="TRY" data-price-key="turkey_teknosa"></div>
                 </div>
                 <a href="#" class="ag-btn ag-btn--secondary ag-btn--small ag-price-card__btn-action">
                   <span data-i18n="go_to_store">Go to store</span>
@@ -423,7 +442,7 @@
               </div>
             </div>
             <!-- Card 6: Vatan Bilgisayar -->
-            <div class="ag-price-card ag-price-card--retailer">
+            <div class="ag-price-card ag-price-card--retailer" data-local-retailer="vatan" data-in-stock="true" data-tier="3" data-country="turkey">
               <div class="ag-price-card__header">
                 <div class="ag-price-card__info-group">
                   <div class="ag-price-card__name-row">
@@ -438,11 +457,11 @@
                     </span>
                   </div>
                   <div class="ag-price-card__seller-name">Vatan Mağazacılık A.Ş.</div>
-                  <div class="ag-price-card__retailer-meta">Updated 5h ago</div>
+                  <div class="ag-price-card__retailer-meta" data-i18n="updated" data-i18n-val="5h ago">Updated 5h ago</div>
                 </div>
                 <div class="ag-price-card__price-wrapper">
-                  <div id="price-turkey-vatan-primary" class="ag-price-card__price-primary" data-price="49900" data-local="TRY">₺49,900</div>
-                  <div id="price-turkey-vatan-secondary" class="ag-price-card__price-secondary" data-price="49900" data-local="TRY"></div>
+                  <div class="ag-price-card__price-primary" data-price="49900" data-local="TRY" data-price-key="turkey_vatan">₺49,900</div>
+                  <div class="ag-price-card__price-secondary" data-price="49900" data-local="TRY" data-price-key="turkey_vatan"></div>
                 </div>
                 <a href="#" class="ag-btn ag-btn--secondary ag-btn--small ag-price-card__btn-action">
                   <span data-i18n="go_to_store">Go to store</span>
@@ -454,7 +473,7 @@
               </div>
             </div>
             <!-- Card 7: n11 -->
-            <div class="ag-price-card ag-price-card--retailer">
+            <div class="ag-price-card ag-price-card--retailer" data-local-retailer="n11" data-in-stock="true" data-tier="3" data-country="turkey">
               <div class="ag-price-card__header">
                 <div class="ag-price-card__info-group">
                   <div class="ag-price-card__name-row">
@@ -469,22 +488,246 @@
                     </span>
                   </div>
                   <div class="ag-price-card__seller-name">N11.com Mağaza</div>
-                  <div class="ag-price-card__retailer-meta">Updated 7h ago</div>
+                  <div class="ag-price-card__retailer-meta" data-i18n="updated" data-i18n-val="7h ago">Updated 7h ago</div>
                 </div>
                 <div class="ag-price-card__price-wrapper">
-                  <div id="price-turkey-n11-primary" class="ag-price-card__price-primary" data-price="48900" data-local="TRY">₺48,900</div>
-                  <div id="price-turkey-n11-secondary" class="ag-price-card__price-secondary" data-price="48900" data-local="TRY"></div>
+                  <div class="ag-price-card__price-primary" data-price="48900" data-local="TRY" data-price-key="turkey_n11">₺48,900</div>
+                  <div class="ag-price-card__price-secondary" data-price="48900" data-local="TRY" data-price-key="turkey_n11"></div>
                 </div>
-                <a href="#" class="ag-btn ag-btn--secondary ag-btn--small ag-price-card__btn-action">
-                  <span data-i18n="go_to_store">Go to store</span>
-                  <svg class="ag-rtl-flip" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <line x1="5" y1="12" x2="19" y2="12"></line>
-                    <polyline points="12 5 19 12 12 19"></polyline>
-                  </svg>
-                </a>
-              </div>
+              <a href="#" class="ag-btn ag-btn--secondary ag-btn--small ag-price-card__btn-action">
+                <span data-i18n="go_to_store">Go to store</span>
+                <svg class="ag-rtl-flip" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <line x1="5" y1="12" x2="19" y2="12"></line>
+                  <polyline points="12 5 19 12 12 19"></polyline>
+                </svg>
+              </a>
             </div>
           </div>
+
+          <!-- Turkey - Amazon TR -->
+          <div class="ag-price-card ag-price-card--retailer" data-local-retailer="amazon" data-in-stock="true" data-tier="1" data-country="turkey">
+            <div class="ag-price-card__header">
+              <div class="ag-price-card__info-group">
+                <div class="ag-price-card__name-row">
+                  <span class="ag-price-card__name">Amazon TR</span>
+                  <span class="ag-badge ag-badge--official ag-tooltip ag-tooltip--bottom" tabindex="0">
+                    <span data-i18n="official">Official</span>
+                    <span class="ag-tooltip__content" tabindex="0">
+                      <strong data-i18n="tier_1">Tier 1</strong> · <span data-i18n="official_desc">Official brand storefront</span>
+                      <span class="ag-tooltip__date" tabindex="0" data-i18n="last_verified" data-i18n-val="2026-06-03">Last verified: 2026-06-03</span>
+                      <a href="methodology.html#tier-system" class="ag-tooltip__link" data-i18n="learn_more">Learn more</a>
+                    </span>
+                  </span>
+                </div>
+                <div class="ag-price-card__seller-name">Amazon Turkey</div>
+                <div class="ag-price-card__retailer-meta" data-i18n="updated" data-i18n-val="2h ago">Updated 2h ago</div>
+              </div>
+              <div class="ag-price-card__price-wrapper">
+                <div class="ag-price-card__price-primary" data-price="47900" data-local="TRY" data-price-key="turkey_amazon">₺47,900</div>
+                <div class="ag-price-card__price-secondary" data-price="47900" data-local="TRY" data-price-key="turkey_amazon"></div>
+              </div>
+              <a href="#" class="ag-btn ag-btn--secondary ag-btn--small ag-price-card__btn-action">
+                <span data-i18n="go_to_store">Go to store</span>
+                <svg class="ag-rtl-flip" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <line x1="5" y1="12" x2="19" y2="12"></line>
+                  <polyline points="12 5 19 12 12 19"></polyline>
+                </svg>
+              </a>
+            </div>
+          </div>
+
+          <!-- Turkey - Itopya -->
+          <div class="ag-price-card ag-price-card--retailer" data-local-retailer="itopya" data-in-stock="true" data-tier="3" data-country="turkey">
+            <div class="ag-price-card__header">
+              <div class="ag-price-card__info-group">
+                <div class="ag-price-card__name-row">
+                  <span class="ag-price-card__name">Itopya</span>
+                  <span class="ag-badge ag-badge--verified ag-tooltip ag-tooltip--bottom" tabindex="0">
+                    <span data-i18n="verified">Verified</span>
+                    <span class="ag-tooltip__content" tabindex="0">
+                      <strong data-i18n="tier_3">Tier 3</strong> · <span data-i18n="marketplace_desc">Major marketplace seller</span>
+                      <span class="ag-tooltip__date" tabindex="0" data-i18n="last_verified" data-i18n-val="2026-06-03">Last verified: 2026-06-03</span>
+                      <a href="methodology.html#tier-system" class="ag-tooltip__link" data-i18n="learn_more">Learn more</a>
+                    </span>
+                  </span>
+                </div>
+                <div class="ag-price-card__seller-name">Itopya Bilgisayar</div>
+                <div class="ag-price-card__retailer-meta" data-i18n="updated" data-i18n-val="5h ago">Updated 5h ago</div>
+              </div>
+              <div class="ag-price-card__price-wrapper">
+                <div class="ag-price-card__price-primary" data-price="48200" data-local="TRY" data-price-key="turkey_itopya">₺48,200</div>
+                <div class="ag-price-card__price-secondary" data-price="48200" data-local="TRY" data-price-key="turkey_itopya"></div>
+              </div>
+              <a href="#" class="ag-btn ag-btn--secondary ag-btn--small ag-price-card__btn-action">
+                <span data-i18n="go_to_store">Go to store</span>
+                <svg class="ag-rtl-flip" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <line x1="5" y1="12" x2="19" y2="12"></line>
+                  <polyline points="12 5 19 12 12 19"></polyline>
+                </svg>
+              </a>
+            </div>
+          </div>
+
+          <!-- Turkey - Sahibinden -->
+          <div class="ag-price-card ag-price-card--retailer" data-local-retailer="sahibinden" data-in-stock="true" data-tier="3" data-country="turkey">
+            <div class="ag-price-card__header">
+              <div class="ag-price-card__info-group">
+                <div class="ag-price-card__name-row">
+                  <span class="ag-price-card__name">Sahibinden</span>
+                  <span class="ag-badge ag-badge--verified ag-tooltip ag-tooltip--bottom" tabindex="0">
+                    <span data-i18n="verified">Verified</span>
+                    <span class="ag-tooltip__content" tabindex="0">
+                      <strong data-i18n="tier_3">Tier 3</strong> · <span data-i18n="marketplace_desc">Major marketplace seller</span>
+                      <span class="ag-tooltip__date" tabindex="0" data-i18n="last_verified" data-i18n-val="2026-06-03">Last verified: 2026-06-03</span>
+                      <a href="methodology.html#tier-system" class="ag-tooltip__link" data-i18n="learn_more">Learn more</a>
+                    </span>
+                  </span>
+                </div>
+                <div class="ag-price-card__seller-name">Sahibinden Market</div>
+                <div class="ag-price-card__retailer-meta" data-i18n="updated" data-i18n-val="8h ago">Updated 8h ago</div>
+              </div>
+              <div class="ag-price-card__price-wrapper">
+                <div class="ag-price-card__price-primary" data-price="46500" data-local="TRY" data-price-key="turkey_sahibinden">₺46,500</div>
+                <div class="ag-price-card__price-secondary" data-price="46500" data-local="TRY" data-price-key="turkey_sahibinden"></div>
+              </div>
+              <a href="#" class="ag-btn ag-btn--secondary ag-btn--small ag-price-card__btn-action">
+                <span data-i18n="go_to_store">Go to store</span>
+                <svg class="ag-rtl-flip" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <line x1="5" y1="12" x2="19" y2="12"></line>
+                  <polyline points="12 5 19 12 12 19"></polyline>
+                </svg>
+              </a>
+            </div>
+          </div>
+
+          <!-- Turkey - PTTAVM -->
+          <div class="ag-price-card ag-price-card--retailer" data-local-retailer="pttavm" data-in-stock="true" data-tier="3" data-country="turkey">
+            <div class="ag-price-card__header">
+              <div class="ag-price-card__info-group">
+                <div class="ag-price-card__name-row">
+                  <span class="ag-price-card__name">PTTAVM</span>
+                  <span class="ag-badge ag-badge--verified ag-tooltip ag-tooltip--bottom" tabindex="0">
+                    <span data-i18n="verified">Verified</span>
+                    <span class="ag-tooltip__content" tabindex="0">
+                      <strong data-i18n="tier_3">Tier 3</strong> · <span data-i18n="marketplace_desc">Major marketplace seller</span>
+                      <span class="ag-tooltip__date" tabindex="0" data-i18n="last_verified" data-i18n-val="2026-06-03">Last verified: 2026-06-03</span>
+                      <a href="methodology.html#tier-system" class="ag-tooltip__link" data-i18n="learn_more">Learn more</a>
+                    </span>
+                  </span>
+                </div>
+                <div class="ag-price-card__seller-name">PTT AVM</div>
+                <div class="ag-price-card__retailer-meta" data-i18n="updated" data-i18n-val="12h ago">Updated 12h ago</div>
+              </div>
+              <div class="ag-price-card__price-wrapper">
+                <div class="ag-price-card__price-primary" data-price="47100" data-local="TRY" data-price-key="turkey_pttavm">₺47,100</div>
+                <div class="ag-price-card__price-secondary" data-price="47100" data-local="TRY" data-price-key="turkey_pttavm"></div>
+              </div>
+              <a href="#" class="ag-btn ag-btn--secondary ag-btn--small ag-price-card__btn-action">
+                <span data-i18n="go_to_store">Go to store</span>
+                <svg class="ag-rtl-flip" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <line x1="5" y1="12" x2="19" y2="12"></line>
+                  <polyline points="12 5 19 12 12 19"></polyline>
+                </svg>
+              </a>
+            </div>
+          </div>
+
+          <!-- Turkey - Sinerji -->
+          <div class="ag-price-card ag-price-card--retailer" data-local-retailer="sinerji" data-in-stock="true" data-tier="3" data-country="turkey">
+            <div class="ag-price-card__header">
+              <div class="ag-price-card__info-group">
+                <div class="ag-price-card__name-row">
+                  <span class="ag-price-card__name">Sinerji</span>
+                  <span class="ag-badge ag-badge--verified ag-tooltip ag-tooltip--bottom" tabindex="0">
+                    <span data-i18n="verified">Verified</span>
+                    <span class="ag-tooltip__content" tabindex="0">
+                      <strong data-i18n="tier_3">Tier 3</strong> · <span data-i18n="marketplace_desc">Major marketplace seller</span>
+                      <span class="ag-tooltip__date" tabindex="0" data-i18n="last_verified" data-i18n-val="2026-06-03">Last verified: 2026-06-03</span>
+                      <a href="methodology.html#tier-system" class="ag-tooltip__link" data-i18n="learn_more">Learn more</a>
+                    </span>
+                  </span>
+                </div>
+                <div class="ag-price-card__seller-name">Sinerji Bilgisayar</div>
+                <div class="ag-price-card__retailer-meta" data-i18n="updated" data-i18n-val="1d ago">Updated 1d ago</div>
+              </div>
+              <div class="ag-price-card__price-wrapper">
+                <div class="ag-price-card__price-primary" data-price="48400" data-local="TRY" data-price-key="turkey_sinerji">₺48,400</div>
+                <div class="ag-price-card__price-secondary" data-price="48400" data-local="TRY" data-price-key="turkey_sinerji"></div>
+              </div>
+              <a href="#" class="ag-btn ag-btn--secondary ag-btn--small ag-price-card__btn-action">
+                <span data-i18n="go_to_store">Go to store</span>
+                <svg class="ag-rtl-flip" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <line x1="5" y1="12" x2="19" y2="12"></line>
+                  <polyline points="12 5 19 12 12 19"></polyline>
+                </svg>
+              </a>
+            </div>
+          </div>
+
+          <!-- Turkey - Incehesap -->
+          <div class="ag-price-card ag-price-card--retailer" data-local-retailer="incehesap" data-in-stock="true" data-tier="3" data-country="turkey">
+            <div class="ag-price-card__header">
+              <div class="ag-price-card__info-group">
+                <div class="ag-price-card__name-row">
+                  <span class="ag-price-card__name">İncehesap</span>
+                  <span class="ag-badge ag-badge--verified ag-tooltip ag-tooltip--bottom" tabindex="0">
+                    <span data-i18n="verified">Verified</span>
+                    <span class="ag-tooltip__content" tabindex="0">
+                      <strong data-i18n="tier_3">Tier 3</strong> · <span data-i18n="marketplace_desc">Major marketplace seller</span>
+                      <span class="ag-tooltip__date" tabindex="0" data-i18n="last_verified" data-i18n-val="2026-06-03">Last verified: 2026-06-03</span>
+                      <a href="methodology.html#tier-system" class="ag-tooltip__link" data-i18n="learn_more">Learn more</a>
+                    </span>
+                  </span>
+                </div>
+                <div class="ag-price-card__seller-name">Incehesap Bilgi Teknolojileri</div>
+                <div class="ag-price-card__retailer-meta" data-i18n="updated" data-i18n-val="4h ago">Updated 4h ago</div>
+              </div>
+              <div class="ag-price-card__price-wrapper">
+                <div class="ag-price-card__price-primary" data-price="47600" data-local="TRY" data-price-key="turkey_incehesap">₺47,600</div>
+                <div class="ag-price-card__price-secondary" data-price="47600" data-local="TRY" data-price-key="turkey_incehesap"></div>
+              </div>
+              <a href="#" class="ag-btn ag-btn--secondary ag-btn--small ag-price-card__btn-action">
+                <span data-i18n="go_to_store">Go to store</span>
+                <svg class="ag-rtl-flip" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <line x1="5" y1="12" x2="19" y2="12"></line>
+                  <polyline points="12 5 19 12 12 19"></polyline>
+                </svg>
+              </a>
+            </div>
+          </div>
+
+          <!-- Turkey - Ciceksepeti -->
+          <div class="ag-price-card ag-price-card--retailer" data-local-retailer="ciceksepeti" data-in-stock="true" data-tier="3" data-country="turkey">
+            <div class="ag-price-card__header">
+              <div class="ag-price-card__info-group">
+                <div class="ag-price-card__name-row">
+                  <span class="ag-price-card__name">Çiçeksepeti</span>
+                  <span class="ag-badge ag-badge--verified ag-tooltip ag-tooltip--bottom" tabindex="0">
+                    <span data-i18n="verified">Verified</span>
+                    <span class="ag-tooltip__content" tabindex="0">
+                      <strong data-i18n="tier_3">Tier 3</strong> · <span data-i18n="marketplace_desc">Major marketplace seller</span>
+                      <span class="ag-tooltip__date" tabindex="0" data-i18n="last_verified" data-i18n-val="2026-06-03">Last verified: 2026-06-03</span>
+                      <a href="methodology.html#tier-system" class="ag-tooltip__link" data-i18n="learn_more">Learn more</a>
+                    </span>
+                  </span>
+                </div>
+                <div class="ag-price-card__seller-name">Ciceksepeti Extra</div>
+                <div class="ag-price-card__retailer-meta" data-i18n="updated" data-i18n-val="6h ago">Updated 6h ago</div>
+              </div>
+              <div class="ag-price-card__price-wrapper">
+                <div class="ag-price-card__price-primary" data-price="48000" data-local="TRY" data-price-key="turkey_ciceksepeti">₺48,000</div>
+                <div class="ag-price-card__price-secondary" data-price="48000" data-local="TRY" data-price-key="turkey_ciceksepeti"></div>
+              </div>
+              <a href="#" class="ag-btn ag-btn--secondary ag-btn--small ag-price-card__btn-action">
+                <span data-i18n="go_to_store">Go to store</span>
+                <svg class="ag-rtl-flip" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <line x1="5" y1="12" x2="19" y2="12"></line>
+                  <polyline points="12 5 19 12 12 19"></polyline>
+                </svg>
+              </a>
+            </div>
+          </div>
+
           <div class="ag-gate-overlay">
             <div class="ag-gate-card">
               <svg class="ag-gate-card__icon" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -495,6 +738,359 @@
               <button class="ag-btn ag-btn--premium" data-i18n="upgrade_premium">Upgrade to Premium</button>
               <a href="#" class="ag-btn ag-btn--text ag-btn--small" data-i18n="learn_more_premium">Learn more about Premium</a>
             </div>
+          </div>
+        </div>
+
+        <!-- UAE - Apple Store UAE -->
+        <div class="ag-price-card ag-price-card--retailer" data-local-retailer="apple-uae" data-in-stock="true" data-tier="1" data-country="uae" style="display: none;">
+          <div class="ag-price-card__header">
+            <div class="ag-price-card__info-group">
+              <div class="ag-price-card__name-row">
+                <span class="ag-price-card__name">Apple Store UAE</span>
+                <span class="ag-badge ag-badge--official ag-tooltip" tabindex="0">
+                  <span data-i18n="official">Official</span>
+                  <span class="ag-tooltip__content" tabindex="0">
+                    <strong data-i18n="tier_1">Tier 1</strong> · <span data-i18n="official_desc">Official brand storefront</span>
+                    <span class="ag-tooltip__date" tabindex="0" data-i18n="last_verified" data-i18n-val="2026-06-01">Last verified: 2026-06-01</span>
+                    <a href="methodology.html#tier-system" class="ag-tooltip__link" data-i18n="learn_more">Learn more</a>
+                  </span>
+                </span>
+              </div>
+              <div class="ag-price-card__seller-name">Apple Inc.</div>
+              <div class="ag-price-card__retailer-meta" data-i18n="updated" data-i18n-val="5h ago">Updated 5h ago</div>
+            </div>
+            <div class="ag-price-card__price-wrapper">
+              <div class="ag-price-card__price-primary" data-price="39200" data-local="AED" data-price-key="uae">₺39,200</div>
+              <div class="ag-price-card__price-secondary" data-price="39200" data-local="AED" data-price-key="uae"></div>
+            </div>
+            <a href="#" class="ag-btn ag-btn--secondary ag-btn--small ag-price-card__btn-action">
+              <span data-i18n="go_to_store">Go to store</span>
+              <svg class="ag-rtl-flip" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+                <polyline points="12 5 19 12 12 19"></polyline>
+              </svg>
+            </a>
+          </div>
+        </div>
+
+        <!-- UAE - Sharaf DG -->
+        <div class="ag-price-card ag-price-card--retailer" data-local-retailer="sharaf-uae" data-in-stock="true" data-tier="2" data-country="uae" style="display: none;">
+          <div class="ag-price-card__header">
+            <div class="ag-price-card__info-group">
+              <div class="ag-price-card__name-row">
+                <span class="ag-price-card__name">Sharaf DG</span>
+                <span class="ag-badge ag-badge--authorized ag-tooltip" tabindex="0">
+                  <span data-i18n="authorized">Authorized</span>
+                  <span class="ag-tooltip__content" tabindex="0">
+                    <strong data-i18n="tier_2">Tier 2</strong> · <span data-i18n="authorized_desc">Authorized retailer</span>
+                    <span class="ag-tooltip__date" tabindex="0" data-i18n="last_verified" data-i18n-val="2026-05-30">Last verified: 2026-05-30</span>
+                    <a href="methodology.html#tier-system" class="ag-tooltip__link" data-i18n="learn_more">Learn more</a>
+                  </span>
+                </span>
+              </div>
+              <div class="ag-price-card__seller-name">Sharaf DG LLC</div>
+              <div class="ag-price-card__retailer-meta" data-i18n="updated" data-i18n-val="9h ago">Updated 9h ago</div>
+            </div>
+            <div class="ag-price-card__price-wrapper">
+              <div class="ag-price-card__price-primary" data-price="40100" data-local="AED" data-price-key="uae_sharaf">₺40,100</div>
+              <div class="ag-price-card__price-secondary" data-price="40100" data-local="AED" data-price-key="uae_sharaf"></div>
+            </div>
+            <a href="#" class="ag-btn ag-btn--secondary ag-btn--small ag-price-card__btn-action">
+              <span data-i18n="go_to_store">Go to store</span>
+              <svg class="ag-rtl-flip" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+                <polyline points="12 5 19 12 12 19"></polyline>
+              </svg>
+            </a>
+          </div>
+        </div>
+
+        <!-- UAE - Jumbo Electronics -->
+        <div class="ag-price-card ag-price-card--retailer" data-local-retailer="jumbo-uae" data-in-stock="true" data-tier="2" data-country="uae" style="display: none;">
+          <div class="ag-price-card__header">
+            <div class="ag-price-card__info-group">
+              <div class="ag-price-card__name-row">
+                <span class="ag-price-card__name">Jumbo Electronics</span>
+                <span class="ag-badge ag-badge--authorized ag-badge--warning ag-tooltip" tabindex="0">
+                  <span data-i18n="authorized">Authorized</span>
+                  <span class="ag-tooltip__content" tabindex="0">
+                    <strong data-i18n="tier_2">Tier 2</strong> · <span data-i18n="authorized_desc">Authorized retailer</span>
+                    <span class="ag-tooltip__warning" tabindex="0" data-i18n="verification_due">Verification due</span>
+                    <span class="ag-tooltip__date" tabindex="0" data-i18n="last_verified" data-i18n-val="2026-04-15">Last verified: 2026-04-15</span>
+                    <a href="methodology.html#tier-system" class="ag-tooltip__link" data-i18n="learn_more">Learn more</a>
+                  </span>
+                </span>
+              </div>
+              <div class="ag-price-card__seller-name">Jumbo Electronics LLC</div>
+              <div class="ag-price-card__retailer-meta" data-i18n="updated" data-i18n-val="1d ago">Updated 1d ago</div>
+            </div>
+            <div class="ag-price-card__price-wrapper">
+              <div class="ag-price-card__price-primary" data-price="40850" data-local="AED" data-price-key="uae_jumbo">₺40,850</div>
+              <div class="ag-price-card__price-secondary" data-price="40850" data-local="AED" data-price-key="uae_jumbo"></div>
+            </div>
+            <a href="#" class="ag-btn ag-btn--secondary ag-btn--small ag-price-card__btn-action">
+              <span data-i18n="go_to_store">Go to store</span>
+              <svg class="ag-rtl-flip" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+                <polyline points="12 5 19 12 12 19"></polyline>
+              </svg>
+            </a>
+          </div>
+        </div>
+
+        <!-- US - Best Buy -->
+        <div class="ag-price-card ag-price-card--retailer" data-local-retailer="bestbuy-usa" data-in-stock="true" data-tier="2" data-country="usa" style="display: none;">
+          <div class="ag-price-card__header">
+            <div class="ag-price-card__info-group">
+              <div class="ag-price-card__name-row">
+                <span class="ag-price-card__name">Best Buy</span>
+                <span class="ag-badge ag-badge--authorized ag-tooltip" tabindex="0">
+                  <span data-i18n="authorized">Authorized</span>
+                  <span class="ag-tooltip__content" tabindex="0">
+                    <strong data-i18n="tier_2">Tier 2</strong> · <span data-i18n="authorized_desc">Authorized retailer</span>
+                    <span class="ag-tooltip__date" tabindex="0" data-i18n="last_verified" data-i18n-val="2026-05-25">Last verified: 2026-05-25</span>
+                    <a href="methodology.html#tier-system" class="ag-tooltip__link" data-i18n="learn_more">Learn more</a>
+                  </span>
+                </span>
+              </div>
+              <div class="ag-price-card__seller-name">Best Buy Co., Inc.</div>
+              <div class="ag-price-card__retailer-meta" data-i18n="updated" data-i18n-val="1h ago">Updated 1h ago</div>
+            </div>
+            <div class="ag-price-card__price-wrapper">
+              <div class="ag-price-card__price-primary" data-price="35900" data-local="USD" data-price-key="usa">₺35,900</div>
+              <div class="ag-price-card__price-secondary" data-price="35900" data-local="USD" data-price-key="usa"></div>
+            </div>
+            <a href="#" class="ag-btn ag-btn--secondary ag-btn--small ag-price-card__btn-action">
+              <span data-i18n="go_to_store">Go to store</span>
+              <svg class="ag-rtl-flip" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+                <polyline points="12 5 19 12 12 19"></polyline>
+              </svg>
+            </a>
+          </div>
+        </div>
+
+        <!-- US - B&H Photo -->
+        <div class="ag-price-card ag-price-card--retailer" data-local-retailer="bh-usa" data-in-stock="true" data-tier="2" data-country="usa" style="display: none;">
+          <div class="ag-price-card__header">
+            <div class="ag-price-card__info-group">
+              <div class="ag-price-card__name-row">
+                <span class="ag-price-card__name">B&H Photo</span>
+                <span class="ag-badge ag-badge--authorized ag-tooltip" tabindex="0">
+                  <span data-i18n="authorized">Authorized</span>
+                  <span class="ag-tooltip__content" tabindex="0">
+                    <strong data-i18n="tier_2">Tier 2</strong> · <span data-i18n="authorized_desc">Authorized retailer</span>
+                    <span class="ag-tooltip__date" tabindex="0" data-i18n="last_verified" data-i18n-val="2026-05-26">Last verified: 2026-05-26</span>
+                    <a href="methodology.html#tier-system" class="ag-tooltip__link" data-i18n="learn_more">Learn more</a>
+                  </span>
+                </span>
+              </div>
+              <div class="ag-price-card__seller-name">B&H Foto & Electronics</div>
+              <div class="ag-price-card__retailer-meta" data-i18n="updated" data-i18n-val="4h ago">Updated 4h ago</div>
+            </div>
+            <div class="ag-price-card__price-wrapper">
+              <div class="ag-price-card__price-primary" data-price="36200" data-local="USD" data-price-key="usa_bh">₺36,200</div>
+              <div class="ag-price-card__price-secondary" data-price="36200" data-local="USD" data-price-key="usa_bh"></div>
+            </div>
+            <a href="#" class="ag-btn ag-btn--secondary ag-btn--small ag-price-card__btn-action">
+              <span data-i18n="go_to_store">Go to store</span>
+              <svg class="ag-rtl-flip" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+                <polyline points="12 5 19 12 12 19"></polyline>
+              </svg>
+            </a>
+          </div>
+        </div>
+
+        <!-- US - Apple Store US -->
+        <div class="ag-price-card ag-price-card--retailer" data-local-retailer="apple-usa" data-in-stock="true" data-tier="1" data-country="usa" style="display: none;">
+          <div class="ag-price-card__header">
+            <div class="ag-price-card__info-group">
+              <div class="ag-price-card__name-row">
+                <span class="ag-price-card__name">Apple US</span>
+                <span class="ag-badge ag-badge--official ag-tooltip" tabindex="0">
+                  <span data-i18n="official">Official</span>
+                  <span class="ag-tooltip__content" tabindex="0">
+                    <strong data-i18n="tier_1">Tier 1</strong> · <span data-i18n="official_desc">Official brand storefront</span>
+                    <span class="ag-tooltip__date" tabindex="0" data-i18n="last_verified" data-i18n-val="2026-06-01">Last verified: 2026-06-01</span>
+                    <a href="methodology.html#tier-system" class="ag-tooltip__link" data-i18n="learn_more">Learn more</a>
+                  </span>
+                </span>
+              </div>
+              <div class="ag-price-card__seller-name">Apple Inc.</div>
+              <div class="ag-price-card__retailer-meta" data-i18n="updated" data-i18n-val="2h ago">Updated 2h ago</div>
+            </div>
+            <div class="ag-price-card__price-wrapper">
+              <div class="ag-price-card__price-primary" data-price="36400" data-local="USD" data-price-key="usa_apple">₺36,400</div>
+              <div class="ag-price-card__price-secondary" data-price="36400" data-local="USD" data-price-key="usa_apple"></div>
+            </div>
+            <a href="#" class="ag-btn ag-btn--secondary ag-btn--small ag-price-card__btn-action">
+              <span data-i18n="go_to_store">Go to store</span>
+              <svg class="ag-rtl-flip" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+                <polyline points="12 5 19 12 12 19"></polyline>
+              </svg>
+            </a>
+          </div>
+        </div>
+
+        <!-- Japan - Yodobashi Camera -->
+        <div class="ag-price-card ag-price-card--retailer" data-local-retailer="yodobashi-japan" data-in-stock="true" data-tier="2" data-country="japan" style="display: none;">
+          <div class="ag-price-card__header">
+            <div class="ag-price-card__info-group">
+              <div class="ag-price-card__name-row">
+                <span class="ag-price-card__name">Yodobashi Camera</span>
+                <span class="ag-badge ag-badge--authorized ag-tooltip" tabindex="0">
+                  <span data-i18n="authorized">Authorized</span>
+                  <span class="ag-tooltip__content" tabindex="0">
+                    <strong data-i18n="tier_2">Tier 2</strong> · <span data-i18n="authorized_desc">Authorized retailer</span>
+                    <span class="ag-tooltip__date" tabindex="0" data-i18n="last_verified" data-i18n-val="2026-05-27">Last verified: 2026-05-27</span>
+                    <a href="methodology.html#tier-system" class="ag-tooltip__link" data-i18n="learn_more">Learn more</a>
+                  </span>
+                </span>
+              </div>
+              <div class="ag-price-card__seller-name">Yodobashi-Camera.co.jp</div>
+              <div class="ag-price-card__retailer-meta" data-i18n="updated" data-i18n-val="4h ago">Updated 4h ago</div>
+            </div>
+            <div class="ag-price-card__price-wrapper">
+              <div class="ag-price-card__price-primary" data-price="37100" data-local="JPY" data-price-key="japan">₺37,100</div>
+              <div class="ag-price-card__price-secondary" data-price="37100" data-local="JPY" data-price-key="japan"></div>
+            </div>
+            <a href="#" class="ag-btn ag-btn--secondary ag-btn--small ag-price-card__btn-action">
+              <span data-i18n="go_to_store">Go to store</span>
+              <svg class="ag-rtl-flip" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+                <polyline points="12 5 19 12 12 19"></polyline>
+              </svg>
+            </a>
+          </div>
+        </div>
+
+        <!-- Japan - Apple Store JP -->
+        <div class="ag-price-card ag-price-card--retailer" data-local-retailer="apple-japan" data-in-stock="true" data-tier="1" data-country="japan" style="display: none;">
+          <div class="ag-price-card__header">
+            <div class="ag-price-card__info-group">
+              <div class="ag-price-card__name-row">
+                <span class="ag-price-card__name">Apple Store JP</span>
+                <span class="ag-badge ag-badge--official ag-tooltip" tabindex="0">
+                  <span data-i18n="official">Official</span>
+                  <span class="ag-tooltip__content" tabindex="0">
+                    <strong data-i18n="tier_1">Tier 1</strong> · <span data-i18n="official_desc">Official brand storefront</span>
+                    <span class="ag-tooltip__date" tabindex="0" data-i18n="last_verified" data-i18n-val="2026-06-01">Last verified: 2026-06-01</span>
+                    <a href="methodology.html#tier-system" class="ag-tooltip__link" data-i18n="learn_more">Learn more</a>
+                  </span>
+                </span>
+              </div>
+              <div class="ag-price-card__seller-name">Apple Japan G.K.</div>
+              <div class="ag-price-card__retailer-meta" data-i18n="updated" data-i18n-val="10h ago">Updated 10h ago</div>
+            </div>
+            <div class="ag-price-card__price-wrapper">
+              <div class="ag-price-card__price-primary" data-price="37500" data-local="JPY" data-price-key="japan_apple">₺37,500</div>
+              <div class="ag-price-card__price-secondary" data-price="37500" data-local="JPY" data-price-key="japan_apple"></div>
+            </div>
+            <a href="#" class="ag-btn ag-btn--secondary ag-btn--small ag-price-card__btn-action">
+              <span data-i18n="go_to_store">Go to store</span>
+              <svg class="ag-rtl-flip" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+                <polyline points="12 5 19 12 12 19"></polyline>
+              </svg>
+            </a>
+          </div>
+        </div>
+
+        <!-- UK - Apple Store UK -->
+        <div class="ag-price-card ag-price-card--retailer" data-local-retailer="apple-uk" data-in-stock="true" data-tier="1" data-country="uk" style="display: none;">
+          <div class="ag-price-card__header">
+            <div class="ag-price-card__info-group">
+              <div class="ag-price-card__name-row">
+                <span class="ag-price-card__name">Apple Store UK</span>
+                <span class="ag-badge ag-badge--official ag-tooltip" tabindex="0">
+                  <span data-i18n="official">Official</span>
+                  <span class="ag-tooltip__content" tabindex="0">
+                    <strong data-i18n="tier_1">Tier 1</strong> · <span data-i18n="official_desc">Official brand storefront</span>
+                    <span class="ag-tooltip__date" tabindex="0" data-i18n="last_verified" data-i18n-val="2026-06-01">Last verified: 2026-06-01</span>
+                    <a href="methodology.html#tier-system" class="ag-tooltip__link" data-i18n="learn_more">Learn more</a>
+                  </span>
+                </span>
+              </div>
+              <div class="ag-price-card__seller-name">Apple Retail UK Ltd</div>
+              <div class="ag-price-card__retailer-meta" data-i18n="updated" data-i18n-val="2h ago">Updated 2h ago</div>
+            </div>
+            <div class="ag-price-card__price-wrapper">
+              <div class="ag-price-card__price-primary" data-price="43500" data-local="GBP" data-price-key="uk_apple">₺43,500</div>
+              <div class="ag-price-card__price-secondary" data-price="43500" data-local="GBP" data-price-key="uk_apple"></div>
+            </div>
+            <a href="#" class="ag-btn ag-btn--secondary ag-btn--small ag-price-card__btn-action">
+              <span data-i18n="go_to_store">Go to store</span>
+              <svg class="ag-rtl-flip" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+                <polyline points="12 5 19 12 12 19"></polyline>
+              </svg>
+            </a>
+          </div>
+        </div>
+
+        <!-- Germany - MediaMarkt DE -->
+        <div class="ag-price-card ag-price-card--retailer" data-local-retailer="mediamarkt-germany" data-in-stock="true" data-tier="2" data-country="germany" style="display: none;">
+          <div class="ag-price-card__header">
+            <div class="ag-price-card__info-group">
+              <div class="ag-price-card__name-row">
+                <span class="ag-price-card__name">MediaMarkt DE</span>
+                <span class="ag-badge ag-badge--authorized ag-tooltip" tabindex="0">
+                  <span data-i18n="authorized">Authorized</span>
+                  <span class="ag-tooltip__content" tabindex="0">
+                    <strong data-i18n="tier_2">Tier 2</strong> · <span data-i18n="authorized_desc">Authorized retailer</span>
+                    <span class="ag-tooltip__date" tabindex="0" data-i18n-val="2026-05-29" data-i18n="last_verified">Last verified: 2026-05-29</span>
+                    <a href="methodology.html#tier-system" class="ag-tooltip__link" data-i18n="learn_more">Learn more</a>
+                  </span>
+                </span>
+              </div>
+              <div class="ag-price-card__seller-name">MediaMarkt Saturn Deutschland</div>
+              <div class="ag-price-card__retailer-meta" data-i18n="updated" data-i18n-val="3h ago">Updated 3h ago</div>
+            </div>
+            <div class="ag-price-card__price-wrapper">
+              <div class="ag-price-card__price-primary" data-price="40400" data-local="EUR" data-price-key="germany_mediamarkt">₺40,400</div>
+              <div class="ag-price-card__price-secondary" data-price="40400" data-local="EUR" data-price-key="germany_mediamarkt"></div>
+            </div>
+            <a href="#" class="ag-btn ag-btn--secondary ag-btn--small ag-price-card__btn-action">
+              <span data-i18n="go_to_store">Go to store</span>
+              <svg class="ag-rtl-flip" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+                <polyline points="12 5 19 12 12 19"></polyline>
+              </svg>
+            </a>
+          </div>
+        </div>
+
+        <!-- Canada - Best Buy CA -->
+        <div class="ag-price-card ag-price-card--retailer" data-local-retailer="bestbuy-canada" data-in-stock="true" data-tier="2" data-country="canada" style="display: none;">
+          <div class="ag-price-card__header">
+            <div class="ag-price-card__info-group">
+              <div class="ag-price-card__name-row">
+                <span class="ag-price-card__name">Best Buy CA</span>
+                <span class="ag-badge ag-badge--authorized ag-tooltip" tabindex="0">
+                  <span data-i18n="authorized">Authorized</span>
+                  <span class="ag-tooltip__content" tabindex="0">
+                    <strong data-i18n="tier_2">Tier 2</strong> · <span data-i18n="authorized_desc">Authorized retailer</span>
+                    <span class="ag-tooltip__date" tabindex="0" data-i18n-val="2026-05-24" data-i18n="last_verified">Last verified: 2026-05-24</span>
+                    <a href="methodology.html#tier-system" class="ag-tooltip__link" data-i18n="learn_more">Learn more</a>
+                  </span>
+                </span>
+              </div>
+              <div class="ag-price-card__seller-name">Best Buy Canada Ltd</div>
+              <div class="ag-price-card__retailer-meta" data-i18n="updated" data-i18n-val="5h ago">Updated 5h ago</div>
+            </div>
+            <div class="ag-price-card__price-wrapper">
+              <div class="ag-price-card__price-primary" data-price="36800" data-local="USD" data-price-key="canada_bestbuy">₺36,800</div>
+              <div class="ag-price-card__price-secondary" data-price="36800" data-local="USD" data-price-key="canada_bestbuy"></div>
+            </div>
+            <a href="#" class="ag-btn ag-btn--secondary ag-btn--small ag-price-card__btn-action">
+              <span data-i18n="go_to_store">Go to store</span>
+              <svg class="ag-rtl-flip" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+                <polyline points="12 5 19 12 12 19"></polyline>
+              </svg>
+            </a>
           </div>
         </div>
       </div>
@@ -1082,6 +1678,134 @@
                 </button>
               </div>
             </div>
+
+            <!-- Country Row: Turkey -->
+            <div class="ag-price-card" id="card-turkey">
+              <div class="ag-price-card__header">
+                <div class="ag-price-card__country">
+                  <img class="ag-price-card__flag" src="../assets/flags/tr.svg" alt="Turkey flag">
+                  <span class="ag-price-card__name">Turkey <span class="ag-price-card__code">TR</span></span>
+                </div>
+              </div>
+              <div class="ag-price-card__best-deal">
+                <div class="ag-retailer-row-container">
+                  <div class="ag-retailers-row">
+                    <div>
+                      <div class="ag-price-card__name">Hepsiburada <span class="ag-badge ag-badge--verified ag-tooltip ag-tooltip--bottom" tabindex="0">
+                        <span data-i18n="verified">Verified</span>
+                        <span class="ag-tooltip__content" tabindex="0">
+                          <strong data-i18n="tier_3">Tier 3</strong> · <span data-i18n="marketplace_desc">Major marketplace seller</span>
+                          <span class="ag-tooltip__date" tabindex="0" data-i18n-val="2026-06-03">Last verified: 2026-06-03</span>
+                          <a href="methodology.html#tier-system" class="ag-tooltip__link" data-i18n="learn_more">Learn more</a>
+                        </span>
+                      </span></div>
+                      <div class="ag-price-card__seller-name">TechStore Istanbul</div>
+                      <div class="ag-price-card__retailer-meta">Updated 1h ago</div>
+                    </div>
+                    <div class="ag-price-card__price-wrapper">
+                      <div id="price-turkey-hepsiburada-ww-primary" class="ag-price-card__price-primary" data-price="48500" data-local="TRY">₺48,500</div>
+                      <div id="price-turkey-hepsiburada-ww-secondary" class="ag-price-card__price-secondary" data-price="48500" data-local="TRY"></div>
+                    </div>
+                    <div class="ag-retailers-row__actions">
+                      <button class="ag-btn ag-btn--text ag-price-card__btn-toggle" id="btn-landed-turkey-hepsiburada" onclick="toggleLanded('turkey-hepsiburada', 48500, 'TRY')">
+                        <span data-i18n="landed_cost">Landed cost</span>
+                        <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                          <polyline points="6 9 12 15 18 9"></polyline>
+                        </svg>
+                      </button>
+                      <a href="#" class="ag-btn ag-btn--primary ag-btn--small">
+                        <span data-i18n="go_to_store">Go to store</span>
+                        <svg class="ag-rtl-flip" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                          <line x1="5" y1="12" x2="19" y2="12"></line>
+                          <polyline points="12 5 19 12 12 19"></polyline>
+                        </svg>
+                      </a>
+                    </div>
+                  </div>
+                  <div class="ag-landed-drawer" id="drawer-landed-turkey-hepsiburada"></div>
+                </div>
+              </div>
+              <div class="ag-retailers-drawer" id="drawer-retailers-turkey-ww">
+                <div class="ag-retailers-drawer__inner">
+                  <!-- Trendyol -->
+                  <div class="ag-retailer-row-container">
+                    <div class="ag-retailers-row">
+                      <div>
+                        <div class="ag-price-card__name">Trendyol <span class="ag-badge ag-badge--verified ag-badge--warning ag-tooltip" tabindex="0">
+                          <span data-i18n="verified">Verified</span>
+                          <span class="ag-tooltip__content" tabindex="0">
+                            <strong data-i18n="tier_3">Tier 3</strong> · <span data-i18n="marketplace_desc">Major marketplace seller</span>
+                            <span class="ag-tooltip__warning" tabindex="0" data-i18n="verification_due">Verification due</span>
+                            <span class="ag-tooltip__date" tabindex="0" data-i18n-val="2026-04-20">Last verified: 2026-04-20</span>
+                            <a href="methodology.html#tier-system" class="ag-tooltip__link" data-i18n="learn_more">Learn more</a>
+                          </span>
+                        </span></div>
+                        <div class="ag-price-card__seller-name">Apple Premium Reseller TR</div>
+                        <div class="ag-price-card__retailer-meta">Updated 2h ago</div>
+                      </div>
+                      <div class="ag-price-card__price-wrapper">
+                        <div id="price-turkey-trendyol-ww-primary" class="ag-price-card__price-primary" data-price="49200" data-local="TRY">₺49,200</div>
+                        <div id="price-turkey-trendyol-ww-secondary" class="ag-price-card__price-secondary" data-price="49200" data-local="TRY"></div>
+                      </div>
+                      <div class="ag-retailers-row__actions">
+                        <button class="ag-btn ag-btn--text ag-price-card__btn-toggle" id="btn-landed-turkey-trendyol-ww" onclick="toggleLanded('turkey-trendyol-ww', 49200, 'TRY')">
+                          <span data-i18n="landed_cost">Landed cost</span>
+                          <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <polyline points="6 9 12 15 18 9"></polyline>
+                          </svg>
+                        </button>
+                        <a href="#" class="ag-btn ag-btn--secondary ag-btn--small">
+                          <span data-i18n="go_to_store">Go to store</span>
+                        </a>
+                      </div>
+                    </div>
+                    <div class="ag-landed-drawer" id="drawer-landed-turkey-trendyol-ww"></div>
+                  </div>
+                  <!-- MediaMarkt TR -->
+                  <div class="ag-retailer-row-container">
+                    <div class="ag-retailers-row ag-retailers-row--muted">
+                      <div>
+                        <span class="ag-price-card__out-of-stock" data-i18n="out_of_stock">Out of stock</span>
+                        <div class="ag-price-card__name">MediaMarkt TR <span class="ag-badge ag-badge--authorized ag-tooltip" tabindex="0">
+                          <span data-i18n="authorized">Authorized</span>
+                          <span class="ag-tooltip__content" tabindex="0">
+                            <strong data-i18n="tier_2">Tier 2</strong> · <span data-i18n="authorized_desc">Authorized retailer</span>
+                            <span class="ag-tooltip__date" tabindex="0" data-i18n-val="2026-05-29">Last verified: 2026-05-29</span>
+                            <a href="methodology.html#tier-system" class="ag-tooltip__link" data-i18n="learn_more">Learn more</a>
+                          </span>
+                        </span></div>
+                        <div class="ag-price-card__seller-name">MediaMarkt Turkey</div>
+                        <div class="ag-price-card__retailer-meta">Updated 3h ago</div>
+                      </div>
+                      <div class="ag-price-card__price-wrapper">
+                        <div id="price-turkey-mediamarkt-ww-primary" class="ag-price-card__price-primary" data-price="50100" data-local="TRY">₺50,100</div>
+                        <div id="price-turkey-mediamarkt-ww-secondary" class="ag-price-card__price-secondary" data-price="50100" data-local="TRY"></div>
+                      </div>
+                      <div class="ag-retailers-row__actions">
+                        <button class="ag-btn ag-btn--text ag-price-card__btn-toggle" id="btn-landed-turkey-mediamarkt-ww" onclick="toggleLanded('turkey-mediamarkt-ww', 50100, 'TRY')">
+                          <span data-i18n="landed_cost">Landed cost</span>
+                          <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <polyline points="6 9 12 15 18 9"></polyline>
+                          </svg>
+                        </button>
+                        <a href="#" class="ag-btn ag-btn--outline-muted ag-btn--small">
+                          <span data-i18n="go_to_store">Go to store</span>
+                        </a>
+                      </div>
+                    </div>
+                    <div class="ag-landed-drawer" id="drawer-landed-turkey-mediamarkt-ww"></div>
+                  </div>
+                </div>
+              </div>
+              <div class="ag-price-card__toggle-container">
+                <button class="ag-price-card__btn-toggle" onclick="toggleRetailers('turkey-ww')">
+                  <span data-i18n="more">more</span>
+                  <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <polyline points="6 9 12 15 18 9"></polyline>
+                  </svg>
+                </button>
+              </div>
+            </div>
           </div>
           <div class="ag-gate-overlay">
             <div class="ag-gate-card">
@@ -1416,6 +2140,7 @@
 
     let currentLang = "en";
     let currentCurrency = "TRY";
+    let currentRegion = "turkey";
 
     // Format Money Value helper
     function formatMoney(amountTRY, currencyCode) {
@@ -1494,7 +2219,11 @@
       });
 
       // Update custom generated contents
-      updateSavingsBannerText();
+      if (typeof currentRegion !== "undefined") {
+        switchHomeRegion(currentRegion);
+      } else {
+        updateSavingsBannerText();
+      }
       updateOpenLandedDrawers();
     }
 
@@ -1529,24 +2258,130 @@
       updateOpenLandedDrawers();
     }
 
+    const regionNames = {
+      en: {
+        turkey: "Turkey",
+        uae: "UAE",
+        usa: "USA",
+        germany: "Germany",
+        japan: "Japan",
+        uk: "UK",
+        canada: "Canada"
+      },
+      tr: {
+        turkey: "Türkiye",
+        uae: "AE (BAE)",
+        usa: "ABD",
+        germany: "Almanya",
+        japan: "Japonya",
+        uk: "İngiltere",
+        canada: "Kanada"
+      },
+      ar: {
+        turkey: "تركيا",
+        uae: "الإمارات",
+        usa: "أمريكا",
+        germany: "ألمانيا",
+        japan: "اليابان",
+        uk: "بريطانيا",
+        canada: "كندا"
+      }
+    };
+
+    const regionFlags = {
+      turkey: "tr.svg",
+      uae: "ae.svg",
+      usa: "us.svg",
+      germany: "de.svg",
+      japan: "jp.svg",
+      uk: "gb.svg",
+      canada: "ca.svg"
+    };
+
+    const regionAlts = {
+      turkey: "Turkey flag",
+      uae: "UAE flag",
+      usa: "USA flag",
+      germany: "Germany flag",
+      japan: "Japan flag",
+      uk: "United Kingdom flag",
+      canada: "Canada flag"
+    };
+
+    const countryBestPriceKeys = {
+      turkey: "turkey_hepsiburada",
+      uae: "uae",
+      usa: "usa",
+      japan: "japan",
+      uk: "uk_apple",
+      germany: "germany_mediamarkt",
+      canada: "canada_bestbuy"
+    };
+
+    function getCheapestWorldwideDeal(excludeCountry) {
+      const activeStorageEl = document.querySelector('.ag-variant-chip[data-variant-type="storage"].ag-variant-chip--active');
+      const storage = activeStorageEl ? activeStorageEl.getAttribute("data-variant-value") : "256GB";
+      const prices = variantPrices[storage];
+      
+      let cheapestCountry = null;
+      let cheapestPrice = Infinity;
+      
+      const countriesList = ["turkey", "uae", "usa", "germany", "japan", "uk", "canada"];
+      countriesList.forEach(c => {
+        if (c === excludeCountry) return;
+        const key = countryBestPriceKeys[c];
+        const price = prices[key];
+        if (price && price < cheapestPrice) {
+          cheapestPrice = price;
+          cheapestCountry = c;
+        }
+      });
+      
+      return { country: cheapestCountry, price: cheapestPrice };
+    }
+
     function updateSavingsBannerText() {
-      // UAE cheapest (base 39200 TRY) vs Turkey (52000 TRY)
-      const turkeyEl = document.getElementById("price-turkey");
-      const uaeEl = document.getElementById("price-uae-primary");
-      const baseTurkey = turkeyEl ? parseFloat(turkeyEl.getAttribute("data-price")) : 52000;
-      const baseCheapest = uaeEl ? parseFloat(uaeEl.getAttribute("data-price")) : 39200;
-      const savingsTRY = baseTurkey - baseCheapest;
-      const pct = Math.round((savingsTRY / baseTurkey) * 100);
+      const activeStorageEl = document.querySelector('.ag-variant-chip[data-variant-type="storage"].ag-variant-chip--active');
+      const storage = activeStorageEl ? activeStorageEl.getAttribute("data-variant-value") : "256GB";
+      const prices = variantPrices[storage];
+
+      const homeKey = countryBestPriceKeys[currentRegion];
+      const baseHome = prices[homeKey] || 52000;
+
+      const cheapest = getCheapestWorldwideDeal(currentRegion);
+      const baseCheapest = cheapest.price;
+      const cheapestCountry = cheapest.country || "uae";
+      const savingsTRY = baseHome - baseCheapest;
+      const pct = Math.round((savingsTRY / baseHome) * 100);
 
       const fmtSavings = formatMoney(savingsTRY, currentCurrency);
       const savingsMsgEl = document.getElementById("savings-message");
+      const bannerFlag = document.querySelector(".ag-savings-banner__flag");
 
-      if (currentLang === "tr") {
-        savingsMsgEl.innerHTML = `AE · Türkiye'ye kıyasla <span class="ag-savings-banner__amount">${fmtSavings} (${pct}%)</span> tasarruf edin`;
-      } else if (currentLang === "ar") {
-        savingsMsgEl.innerHTML = `AE · وفر <span class="ag-savings-banner__amount">${fmtSavings} (${pct}%)</span> مقارنة بتركيا`;
+      if (bannerFlag) {
+        bannerFlag.src = `../assets/flags/${regionFlags[cheapestCountry]}`;
+        bannerFlag.alt = regionAlts[cheapestCountry];
+      }
+
+      const countryNameLocal = regionNames[currentLang][cheapestCountry] || cheapestCountry.toUpperCase();
+      const homeNameLocal = regionNames[currentLang][currentRegion] || currentRegion.toUpperCase();
+
+      if (savingsTRY > 0) {
+        if (currentLang === "tr") {
+          savingsMsgEl.innerHTML = `${countryNameLocal} · ${homeNameLocal} ile karşılaştırıldığında <span class="ag-savings-banner__amount">${fmtSavings} (${pct}%)</span> tasarruf edin`;
+        } else if (currentLang === "ar") {
+          savingsMsgEl.innerHTML = `${countryNameLocal} · وفر <span class="ag-savings-banner__amount">${fmtSavings} (${pct}%)</span> مقارنة بـ ${homeNameLocal}`;
+        } else {
+          savingsMsgEl.innerHTML = `${countryNameLocal} · Save <span class="ag-savings-banner__amount">${fmtSavings} (${pct}%)</span> vs ${homeNameLocal}`;
+        }
       } else {
-        savingsMsgEl.innerHTML = `UAE · Save <span class="ag-savings-banner__amount">${fmtSavings} (${pct}%)</span> vs Turkey`;
+        if (currentLang === "tr") {
+          savingsMsgEl.innerHTML = `Tebrikler! En ucuz fiyata <span class="ag-savings-banner__amount">kendi bölgenizde</span> sahipsiniz`;
+        } else if (currentLang === "ar") {
+          savingsMsgEl.innerHTML = `تهانينا! لديك أرخص سعر <span class="ag-savings-banner__amount">في منطقتك</span>`;
+        } else {
+          savingsMsgEl.innerHTML = `Congratulations! You have the cheapest deal <span class="ag-savings-banner__amount">in your region</span>`;
+        }
       }
     }
 
@@ -1694,6 +2529,13 @@
         turkey_teknosa: 49500,
         turkey_vatan: 49900,
         turkey_n11: 48900,
+        turkey_amazon: 47900,
+        turkey_itopya: 48200,
+        turkey_sahibinden: 46500,
+        turkey_pttavm: 47100,
+        turkey_sinerji: 48400,
+        turkey_incehesap: 47600,
+        turkey_ciceksepeti: 48000,
         uae: 39200,
         uae_sharaf: 40100,
         uae_jumbo: 40850,
@@ -1714,6 +2556,13 @@
         turkey_teknosa: 56000,
         turkey_vatan: 56800,
         turkey_n11: 55400,
+        turkey_amazon: 54500,
+        turkey_itopya: 55100,
+        turkey_sahibinden: 53000,
+        turkey_pttavm: 53900,
+        turkey_sinerji: 55300,
+        turkey_incehesap: 54800,
+        turkey_ciceksepeti: 55000,
         uae: 44500,
         uae_sharaf: 45400,
         uae_jumbo: 46200,
@@ -1734,6 +2583,13 @@
         turkey_teknosa: 65900,
         turkey_vatan: 66900,
         turkey_n11: 64900,
+        turkey_amazon: 63900,
+        turkey_itopya: 64800,
+        turkey_sahibinden: 62000,
+        turkey_pttavm: 62900,
+        turkey_sinerji: 65100,
+        turkey_incehesap: 64200,
+        turkey_ciceksepeti: 64500,
         uae: 52000,
         uae_sharaf: 53100,
         uae_jumbo: 53900,
@@ -1753,69 +2609,13 @@
       const prices = variantPrices[storage];
       if (!prices) return;
 
-      const targets = {
-        "price-turkey": prices.turkey,
-        "price-turkey-secondary": prices.turkey,
-        "price-turkey-hepsiburada": prices.turkey_hepsiburada,
-        "price-turkey-hepsiburada-secondary": prices.turkey_hepsiburada,
-        "price-turkey-trendyol": prices.turkey_trendyol,
-        "price-turkey-trendyol-secondary": prices.turkey_trendyol,
-        "price-turkey-mediamarkt": prices.turkey_mediamarkt,
-        "price-turkey-mediamarkt-secondary": prices.turkey_mediamarkt,
-        "price-turkey-teknosa-primary": prices.turkey_teknosa,
-        "price-turkey-teknosa-secondary": prices.turkey_teknosa,
-        "price-turkey-vatan-primary": prices.turkey_vatan,
-        "price-turkey-vatan-secondary": prices.turkey_vatan,
-        "price-turkey-n11-primary": prices.turkey_n11,
-        "price-turkey-n11-secondary": prices.turkey_n11,
-        
-        // UAE
-        "price-uae-primary": prices.uae,
-        "price-uae-secondary": prices.uae,
-        "price-uae-apple-primary": prices.uae,
-        "price-uae-apple-secondary": prices.uae,
-        "price-uae-sharaf-primary": prices.uae_sharaf,
-        "price-uae-sharaf-secondary": prices.uae_sharaf,
-        "price-uae-jumbo-primary": prices.uae_jumbo,
-        "price-uae-jumbo-secondary": prices.uae_jumbo,
-        
-        // USA
-        "price-usa-primary": prices.usa,
-        "price-usa-secondary": prices.usa,
-        "price-usa-bestbuy-primary": prices.usa,
-        "price-usa-bestbuy-secondary": prices.usa,
-        "price-usa-bh-primary": prices.usa_bh,
-        "price-usa-bh-secondary": prices.usa_bh,
-        "price-usa-apple-primary": prices.usa_apple,
-        "price-usa-apple-secondary": prices.usa_apple,
-        
-        // Japan
-        "price-japan-primary": prices.japan,
-        "price-japan-secondary": prices.japan,
-        "price-japan-yodobashi-primary": prices.japan,
-        "price-japan-yodobashi-secondary": prices.japan,
-        "price-japan-apple-primary": prices.japan_apple,
-        "price-japan-apple-secondary": prices.japan_apple,
-
-        // UK
-        "price-uk-apple-primary": prices.uk_apple,
-        "price-uk-apple-secondary": prices.uk_apple,
-
-        // Germany
-        "price-germany-mediamarkt-primary": prices.germany_mediamarkt,
-        "price-germany-mediamarkt-secondary": prices.germany_mediamarkt,
-
-        // Canada
-        "price-canada-bestbuy-primary": prices.canada_bestbuy,
-        "price-canada-bestbuy-secondary": prices.canada_bestbuy
-      };
-
-      for (const [id, price] of Object.entries(targets)) {
-        const el = document.getElementById(id);
-        if (el) {
-          el.setAttribute("data-price", price);
+      const elements = document.querySelectorAll("[data-price-key]");
+      elements.forEach(el => {
+        const key = el.getAttribute("data-price-key");
+        if (prices[key] !== undefined) {
+          el.setAttribute("data-price", prices[key]);
         }
-      }
+      });
     }
 
     // Set up interactive variant chip toggles
@@ -1874,7 +2674,7 @@
       
       optionGroups.forEach(group => {
         group.addEventListener('click', (e) => {
-          if (window.innerWidth > 359) return;
+          if (window.innerWidth > 767) return;
           
           const chip = e.target.closest('.ag-variant-chip');
           if (!chip) return;
@@ -1917,6 +2717,75 @@
       });
     }
 
+    // Dismiss tooltips on mobile scroll
+    function setupMobileTooltipDismiss() {
+      const dismissTooltips = () => {
+        if (window.innerWidth >= 768) return;
+        const activeEl = document.activeElement;
+        if (activeEl && (activeEl.classList.contains('ag-tooltip') || activeEl.closest('.ag-tooltip'))) {
+          activeEl.blur();
+        }
+      };
+
+      document.addEventListener('scroll', dismissTooltips, { capture: true, passive: true });
+    }
+
+    function switchHomeRegion(regionCode) {
+      currentRegion = regionCode;
+
+      // Sync selectors
+      const regionSel = document.getElementById("region-selector");
+      const regionSelMob = document.getElementById("region-selector-mobile");
+      if (regionSel) regionSel.value = regionCode;
+      if (regionSelMob) regionSelMob.value = regionCode;
+
+      // Update Your Country flag and name
+      const localFlagEl = document.getElementById("local-region-flag");
+      if (localFlagEl) {
+        localFlagEl.src = `../assets/flags/${regionFlags[regionCode]}`;
+        localFlagEl.alt = regionAlts[regionCode];
+      }
+
+      const localNameEl = document.getElementById("local-region-name");
+      if (localNameEl) {
+        const names = regionNames[currentLang] || regionNames.en;
+        localNameEl.textContent = names[regionCode] || regionCode;
+      }
+
+      // Filter local retailer cards
+      const localList = document.getElementById("local-retailer-list");
+      if (localList) {
+        const cards = localList.querySelectorAll("[data-country]");
+        cards.forEach(card => {
+          if (card.getAttribute("data-country") === regionCode) {
+            card.style.display = "";
+          } else {
+            card.style.display = "none";
+          }
+        });
+      }
+
+      // Hide active region from Worldwide list, show others
+      const wwSection = document.querySelector(".ag-section--worldwide");
+      if (wwSection) {
+        const cards = wwSection.querySelectorAll("[id^='card-']");
+        cards.forEach(card => {
+          const cardCountry = card.id.replace("card-", "");
+          if (cardCountry === regionCode) {
+            card.style.display = "none";
+          } else {
+            card.style.display = "";
+          }
+        });
+      }
+
+      // Recalculate banner savings
+      updateSavingsBannerText();
+      
+      // Update displayed price currency equivalents if needed
+      updatePrices(currentCurrency);
+    }
+
     // Handle initialization & selectors listener hooks
     window.addEventListener("DOMContentLoaded", () => {
       setupTheme();
@@ -1924,12 +2793,15 @@
       setupVariants();
       setupMobileDropdowns();
       setupTagDropdown();
+      setupMobileTooltipDismiss();
 
       // Listeners
       const langSel = document.getElementById("lang-selector");
       const langSelMob = document.getElementById("lang-selector-mobile");
       const currSel = document.getElementById("currency-selector");
       const currSelMob = document.getElementById("currency-selector-mobile");
+      const regionSel = document.getElementById("region-selector");
+      const regionSelMob = document.getElementById("region-selector-mobile");
 
       langSel.addEventListener("change", (e) => translate(e.target.value));
       langSelMob.addEventListener("change", (e) => translate(e.target.value));
@@ -1944,8 +2816,16 @@
       currSel.addEventListener("change", onCurrencyChange);
       if (currSelMob) currSelMob.addEventListener("change", onCurrencyChange);
 
+      const onRegionChange = (e) => {
+        switchHomeRegion(e.target.value);
+      };
+
+      if (regionSel) regionSel.addEventListener("change", onRegionChange);
+      if (regionSelMob) regionSelMob.addEventListener("change", onRegionChange);
+
       // Initial execution
       translate("en");
+      switchHomeRegion("turkey");
       updatePrices("TRY");
     });
   </script>

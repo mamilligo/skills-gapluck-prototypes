@@ -132,27 +132,29 @@
   pointer-events: auto;
 }
 
-/* Bottom tooltip modifier to prevent clipping under sticky card/section headers */
-.ag-tooltip--bottom .ag-tooltip__content {
-  bottom: auto;
-  top: 140%;
-  transform: translateY(-4px);
-}
+/* Bottom tooltip modifier to prevent clipping under sticky card/section headers (Desktop only) */
+@media (min-width: 768px) {
+  .ag-tooltip--bottom .ag-tooltip__content {
+    bottom: auto;
+    top: 140%;
+    transform: translateY(-4px);
+  }
 
-.ag-tooltip--bottom:hover .ag-tooltip__content,
-.ag-tooltip--bottom:focus-within .ag-tooltip__content {
-  transform: translateY(0);
-}
+  .ag-tooltip--bottom:hover .ag-tooltip__content,
+  .ag-tooltip--bottom:focus-within .ag-tooltip__content {
+    transform: translateY(0);
+  }
 
-.ag-tooltip--bottom .ag-tooltip__content::before {
-  top: auto;
-  bottom: 100%;
-}
+  .ag-tooltip--bottom .ag-tooltip__content::before {
+    top: auto;
+    bottom: 100%;
+  }
 
-.ag-tooltip--bottom .ag-tooltip__content::after {
-  top: auto;
-  bottom: 100%;
-  border-color: transparent transparent var(--color-border) transparent;
+  .ag-tooltip--bottom .ag-tooltip__content::after {
+    top: auto;
+    bottom: 100%;
+    border-color: transparent transparent var(--color-border) transparent;
+  }
 }
 
 /* Tooltip date indicator */
