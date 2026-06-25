@@ -1,0 +1,73 @@
+/**
+ * blueprint-section.css
+ * Reusable section header component styles for the GapLuck platform.
+ */
+
+.ag-blueprint-section {
+  border-top: 1px solid var(--color-border);
+  padding-block: var(--space-12);
+  padding-inline: 0;
+  margin-block-start: var(--space-4);
+}
+
+.ag-blueprint-section__title-group {
+  margin-block-end: var(--space-8);
+  text-align: center;
+}
+
+.ag-blueprint-section__title {
+  font-family: var(--font-family-heading);
+  font-size: var(--text-2xl);
+  margin-block-end: var(--space-2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-3);
+}
+
+.ag-blueprint-section__subtitle {
+  color: var(--color-text-secondary);
+  font-size: var(--text-base);
+  max-width: 75ch;
+  margin-block: 0;
+  margin-inline: auto;
+}
+
+.ag-blueprint-section__title-icon-wrapper {
+  width: 48px;
+  height: 48px;
+  border-radius: var(--radius-md);
+  background-color: var(--color-positive-light);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-block-start: 0;
+  margin-block-end: var(--space-4);
+  margin-inline: auto;
+  border: 1px solid var(--color-savings-border);
+}
+
+.ag-blueprint-section__title-icon {
+  color: var(--color-positive);
+}
+
+.ag-blueprint-section__accent-bars {
+  display: flex;
+  justify-content: center;
+  gap: var(--space-2);
+  margin-block-start: var(--space-4);
+}
+
+.ag-blueprint-section__accent-bar {
+  width: 32px;
+  height: 4px;
+  border-radius: var(--radius-full);
+}
+
+.ag-blueprint-section__accent-bar--traveler {
+  background-color: var(--color-positive);
+}
+
+.ag-blueprint-section__accent-bar--courier {
+  background-color: var(--color-info);
+}

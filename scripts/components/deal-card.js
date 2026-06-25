@@ -31,7 +31,7 @@
       // Get dynamic price text
       let priceText = '';
       if (data.priceBaseTRY) {
-        priceText = this.formatMoney(data.priceBaseTRY, window.currentCurrency || 'TRY');
+        priceText = window.formatMoney(data.priceBaseTRY, window.currentCurrency || 'TRY');
       } else {
         priceText = data.price || '';
       }
@@ -39,7 +39,7 @@
       // Get dynamic savings text
       let savingsText = '';
       if (data.savingsBaseTRY) {
-        const savingsAmt = this.formatMoney(data.savingsBaseTRY, window.currentCurrency || 'TRY');
+        const savingsAmt = window.formatMoney(data.savingsBaseTRY, window.currentCurrency || 'TRY');
         savingsText = `-${data.savingsPercent || '30'}% ${dict['savings'] || 'Savings'}`;
       } else if (data.savingsPercent) {
         savingsText = `-${data.savingsPercent}% ${dict['savings'] || 'Savings'}`;
@@ -61,13 +61,7 @@
       return card;
     },
 
-    formatMoney: function (amountTRY, currencyCode) {
-      if (window.GapLuckCurrency && typeof window.GapLuckCurrency.formatMoney === 'function') {
-        return window.GapLuckCurrency.formatMoney(amountTRY, currencyCode);
-      }
-      const symbol = currencyCode === 'TRY' ? '₺' : (currencyCode === 'EUR' ? '€' : '$');
-      return `${symbol}${Math.round(amountTRY).toLocaleString()}`;
-    }
+
   };
 
   // Expose component to global namespace

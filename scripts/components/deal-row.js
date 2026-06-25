@@ -9,15 +9,7 @@
 
   // Translation dictionary and formatting utilities are now centralized in GapLuckI18N and GapLuckCurrency
 
-  // Helper to safely format currency based on current rates
-  function formatMoney(amountTRY, currencyCode) {
-    if (window.GapLuckCurrency && typeof window.GapLuckCurrency.formatMoney === "function") {
-      return window.GapLuckCurrency.formatMoney(amountTRY, currencyCode);
-    }
-    // Fallback if not loaded
-    const symbol = currencyCode === "TRY" ? "₺" : (currencyCode === "EUR" ? "€" : "$");
-    return `${symbol}${Math.round(amountTRY).toLocaleString()}`;
-  }
+
 
   // Get active translation string
   function getTxt(key, lang) {

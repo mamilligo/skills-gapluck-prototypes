@@ -105,6 +105,21 @@
       // Setup initial visual translation texts
       this.translatePopover(popover);
 
+      // Fallback document focus trap
+      const handleDocumentFocusIn = (e) => {
+        if (popover.classList.contains('ag-watchlist-popover--open') && !popover.contains(e.target) && e.target !== button) {
+          const focusables = [priceInput, saveBtn, removeBtn, closeBtn].filter(
+            el => el && el.style.display !== 'none'
+          );
+          if (focusables.length > 0) {
+            e.preventDefault();
+            focusables[0].focus();
+          }
+        }
+      };
+
+      popover._focusinListener = handleDocumentFocusIn;
+
       // Helper to close popover cleanly resetting styles
       const closePopover = () => {
         popover.classList.remove('ag-watchlist-popover--open');
@@ -113,6 +128,14 @@
         const actionsPanel = container.closest('.ag-product-summary__actions');
         if (actionsPanel) {
           actionsPanel.classList.remove('ag-product-summary__actions--open');
+        }
+
+        if (popover._focusinListener) {
+          document.removeEventListener('focusin', popover._focusinListener);
+        }
+
+        if (button && typeof button.focus === 'function') {
+          button.focus();
         }
       };
 
@@ -135,6 +158,10 @@
           popover.classList.add('ag-watchlist-popover--left');
         } else {
           popover.classList.remove('ag-watchlist-popover--left');
+        }
+
+        if (popover._focusinListener) {
+          document.addEventListener('focusin', popover._focusinListener);
         }
 
         // Focus input
@@ -319,6 +346,12 @@
         if (actionsPanel) {
           actionsPanel.classList.remove('ag-product-summary__actions--open');
         }
+        if (popover._focusinListener) {
+          document.removeEventListener('focusin', popover._focusinListener);
+        }
+        if (btn && typeof btn.focus === 'function') {
+          btn.focus();
+        }
       } else {
         const isActive = btn.classList.contains('ag-btn--watchlist-active');
         const priceInput = popover.querySelector('.ag-watchlist-popover__input');
@@ -369,6 +402,10 @@
           popover.classList.add('ag-watchlist-popover--left');
         } else {
           popover.classList.remove('ag-watchlist-popover--left');
+        }
+
+        if (popover._focusinListener) {
+          document.addEventListener('focusin', popover._focusinListener);
         }
 
         setTimeout(() => {

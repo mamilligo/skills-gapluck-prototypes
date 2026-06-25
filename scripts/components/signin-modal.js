@@ -86,10 +86,55 @@
       window.GapLuckSocialAuth.render(socialContainer, { showText: false, responsive: false });
     }
 
+    let lastActiveElement = null;
+    const focusableSelector = 'a[href], area[href], input:not([disabled]), select:not([disabled]), textarea:not([disabled]), button:not([disabled]), iframe, [tabindex="0"], [contenteditable]';
+
+    function handleTrapFocus(e) {
+      if (e.key !== 'Tab') return;
+
+      const focusableElements = Array.from(backdrop.querySelectorAll(focusableSelector)).filter(
+        el => el.offsetWidth > 0 || el.offsetHeight > 0 || el.getClientRects().length > 0
+      );
+      if (focusableElements.length === 0) return;
+
+      const firstFocusable = focusableElements[0];
+      const lastFocusable = focusableElements[focusableElements.length - 1];
+
+      if (e.shiftKey) {
+        if (document.activeElement === firstFocusable) {
+          e.preventDefault();
+          lastFocusable.focus();
+        }
+      } else {
+        if (document.activeElement === lastFocusable) {
+          e.preventDefault();
+          firstFocusable.focus();
+        }
+      }
+    }
+
+    function handleDocumentFocusIn(e) {
+      const modal = backdrop.querySelector('.ag-signin-modal');
+      if (modal && !modal.contains(e.target)) {
+        const focusableElements = Array.from(modal.querySelectorAll(focusableSelector)).filter(
+          el => el.offsetWidth > 0 || el.offsetHeight > 0 || el.getClientRects().length > 0
+        );
+        if (focusableElements.length > 0) {
+          e.preventDefault();
+          focusableElements[0].focus();
+        }
+      }
+    }
+
     // Open Modal Function
     window.GapLuckSigninModal.open = function (context) {
+      lastActiveElement = document.activeElement;
       backdrop.classList.add('ag-modal-backdrop--open');
       document.body.style.overflow = 'hidden';
+
+      // Bind accessibility listeners
+      backdrop.addEventListener('keydown', handleTrapFocus);
+      document.addEventListener('focusin', handleDocumentFocusIn);
 
       // Apply context-specific title and description if provided
       const titleEl = document.getElementById('signin-title');
@@ -123,6 +168,16 @@
     window.GapLuckSigninModal.close = function () {
       backdrop.classList.remove('ag-modal-backdrop--open');
       document.body.style.overflow = '';
+
+      // Unbind accessibility listeners
+      backdrop.removeEventListener('keydown', handleTrapFocus);
+      document.removeEventListener('focusin', handleDocumentFocusIn);
+
+      // Restore focus
+      if (lastActiveElement && typeof lastActiveElement.focus === 'function') {
+        lastActiveElement.focus();
+      }
+      lastActiveElement = null;
     };
 
     // Bind Close Triggers
@@ -137,7 +192,7 @@
     });
 
     window.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape') {
+      if (e.key === 'Escape' && backdrop.classList.contains('ag-modal-backdrop--open')) {
         window.GapLuckSigninModal.close();
       }
     });

@@ -80,13 +80,7 @@
       return dict[key] || dict[key.toLowerCase()] || key;
     }
 
-    formatMoney(amountTRY) {
-      if (window.GapLuckCurrency && typeof window.GapLuckCurrency.formatMoney === "function") {
-        return window.GapLuckCurrency.formatMoney(amountTRY, this.currentCurrency);
-      }
-      const symbol = this.currentCurrency === "TRY" ? "₺" : (this.currentCurrency === "EUR" ? "€" : "$");
-      return `${symbol}${Math.round(amountTRY).toLocaleString()}`;
-    }
+
 
     renderMarkup() {
       this.container.innerHTML = `
@@ -317,7 +311,7 @@
         const el = this.container.querySelector(`.y-axis-label-${suffix}`);
         if (el) {
           const converted = values[idx] / conversionRate;
-          el.textContent = this.formatMoney(converted * conversionRate); // Format money in active currency
+          el.textContent = window.formatMoney(converted * conversionRate, this.currentCurrency); // Format money in active currency
         }
       });
     }
@@ -403,7 +397,7 @@
           }
 
           const price = this.interpolatePrice(mouseX, this.xCoords[segIdx], this.xCoords[segIdx + 1], pr0, pr1);
-          const formattedPrice = this.formatMoney(price);
+          const formattedPrice = window.formatMoney(price, this.currentCurrency);
 
           let displayName = c.toUpperCase();
           if (c === "uae") displayName = this.getTxt("chart_legend_uae");

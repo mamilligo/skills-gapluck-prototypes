@@ -31,7 +31,7 @@
       // Get dynamic savings text
       let savingsText = data.savingsText || '';
       if (data.savingsBaseTRY) {
-        const fmtSavings = this.formatMoney(data.savingsBaseTRY, window.currentCurrency || 'TRY');
+        const fmtSavings = window.formatMoney(data.savingsBaseTRY, window.currentCurrency || 'TRY');
         const savePrefix = dict['save'] || (activeLang === 'tr' ? 'Tasarruf Edin' : (activeLang === 'ar' ? 'وفر' : 'Save'));
         savingsText = `${savePrefix} ${fmtSavings}`;
       }
@@ -52,14 +52,6 @@
 
       parentContainer.appendChild(card);
       return card;
-    },
-
-    formatMoney: function (amountTRY, currencyCode) {
-      if (window.GapLuckCurrency && typeof window.GapLuckCurrency.formatMoney === 'function') {
-        return window.GapLuckCurrency.formatMoney(amountTRY, currencyCode);
-      }
-      const symbol = currencyCode === 'TRY' ? '₺' : (currencyCode === 'EUR' ? '€' : '$');
-      return `${symbol}${Math.round(amountTRY).toLocaleString()}`;
     }
   };
 

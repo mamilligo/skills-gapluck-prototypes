@@ -33,78 +33,15 @@
   <link href="../styles/components/specs-comparison.css" rel="stylesheet" />
   <link href="../styles/components/deal-card.css" rel="stylesheet" />
   <link href="../styles/components/visited-card.css" rel="stylesheet" />
+  <link href="../styles/components/carousel.css" rel="stylesheet" />
+  <link href="../styles/components/blueprint-section.css" rel="stylesheet" />
+  <link href="../styles/components/marquee-ticker.css" rel="stylesheet" />
 
   <style>
     /* ==========================================================================
        BLUEPRINT LAYOUT & SECTION STYLING (Single-Column Full-Width Stack)
        ========================================================================== */
-    .ag-blueprint-section {
-      border-top: 1px solid var(--color-border);
-      padding: var(--space-12) 0;
-      margin-top: var(--space-4);
-    }
 
-    .ag-blueprint-section__title-group {
-      margin-bottom: var(--space-8);
-      text-align: center;
-    }
-
-    .ag-blueprint-section__title {
-      font-family: var(--font-family-heading);
-      font-size: var(--text-2xl);
-      margin-bottom: var(--space-2);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: var(--space-3);
-    }
-
-    .ag-blueprint-section__subtitle {
-      color: var(--color-text-secondary);
-      font-size: var(--text-base);
-      max-width: 75ch;
-      margin: 0 auto;
-    }
-
-    /* ==========================================================================
-       SECTION 1: PARALLEL DELIVERY TIMELINES (Traveler vs. Courier Columns)
-       ========================================================================== */
-    .ag-blueprint-section__title-icon-wrapper {
-      width: 48px;
-      height: 48px;
-      border-radius: var(--radius-md);
-      background-color: var(--color-positive-light);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin: 0 auto var(--space-4) auto;
-      border: 1px solid var(--color-savings-border);
-    }
-
-    .ag-blueprint-section__title-icon {
-      color: var(--color-positive);
-    }
-
-    .ag-blueprint-section__accent-bars {
-      display: flex;
-      justify-content: center;
-      gap: var(--space-2);
-      margin-top: var(--space-4);
-    }
-
-    .ag-blueprint-section__accent-bar {
-      width: 32px;
-      height: 4px;
-      border-radius: var(--radius-full);
-    }
-
-    .ag-blueprint-section__accent-bar--traveler {
-      background-color: var(--color-positive);
-    }
-
-    .ag-blueprint-section__accent-bar--courier {
-      background-color: var(--color-info);
-    }
 
     .ag-timeline-columns {
       display: grid;
@@ -438,186 +375,12 @@
     /* ==========================================================================
        SECTION 5: TRAVELER MARKETPLACE TICKERS (Rolling Marquee Ticker)
        ========================================================================== */
-    .ag-marquee-banner {
-      width: 100%;
-      background: linear-gradient(90deg, var(--color-bg-secondary) 0%, var(--color-bg-primary) 50%, var(--color-bg-secondary) 100%);
-      border-top: 1px solid var(--color-border);
-      border-bottom: 1px solid var(--color-border);
-      padding: var(--space-3) 0;
-      overflow: hidden;
-      white-space: nowrap;
-      position: relative;
-    }
 
-    .ag-marquee-banner:hover .ag-marquee-track {
-      animation-play-state: paused;
-    }
-
-    .ag-marquee-track {
-      display: inline-flex;
-      animation: marquee 25s linear infinite;
-    }
-
-    @keyframes marquee {
-      0% {
-        transform: translateX(0%);
-      }
-
-      100% {
-        transform: translateX(-50%);
-      }
-    }
-
-    .ag-marquee-item {
-      display: flex;
-      align-items: center;
-      gap: var(--space-3);
-      padding: 0 var(--space-8);
-      font-size: var(--text-xs);
-      font-weight: var(--font-weight-medium);
-      color: var(--color-text-primary);
-      border-inset-inline-end: 1px solid var(--color-border);
-    }
-
-    .ag-marquee-item__flag {
-      width: 16px;
-      height: 12px;
-      object-fit: cover;
-      border-radius: 2px;
-    }
-
-    .ag-marquee-item__savings {
-      color: var(--color-positive);
-      font-weight: var(--font-weight-bold);
-    }
 
     /* ==========================================================================
        SECTION 6: CUSTOMER REVIEWS & DEALS CAROUSELS (Touch-Friendly Carousels)
        ========================================================================== */
-    .ag-carousel-outer {
-      position: relative;
-      width: 100%;
-    }
 
-    /* Edge Fades */
-    .ag-carousel-outer::before,
-    .ag-carousel-outer::after {
-      content: '';
-      position: absolute;
-      top: 0;
-      bottom: 0;
-      width: 48px;
-      pointer-events: none;
-      z-index: 5;
-      transition: opacity var(--transition-base);
-    }
-
-    .ag-carousel-outer::before {
-      inset-inline-start: 0;
-      background: linear-gradient(to right, var(--color-bg-primary), transparent);
-    }
-
-    .ag-carousel-outer::after {
-      inset-inline-end: 0;
-      background: linear-gradient(to left, var(--color-bg-primary), transparent);
-    }
-
-    .ag-carousel-viewport {
-      overflow-x: auto;
-      scroll-behavior: smooth;
-      display: flex;
-      gap: var(--space-4);
-      padding: var(--space-2) 24px var(--space-4) 24px;
-      /* Padding for margins under fade */
-      scrollbar-width: none;
-      /* Hide scrollbars */
-    }
-
-    .ag-carousel-viewport::-webkit-scrollbar {
-      display: none;
-    }
-
-    .ag-carousel-btn {
-      position: absolute;
-      top: 50%;
-      transform: translateY(-50%);
-      width: 40px;
-      height: 40px;
-      border-radius: 50%;
-      background: rgba(255, 255, 255, 0.8);
-      backdrop-filter: blur(8px);
-      -webkit-backdrop-filter: blur(8px);
-      border: 1px solid var(--color-border-strong);
-      box-shadow: var(--shadow-md);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      cursor: pointer;
-      z-index: 10;
-      color: var(--color-text-primary);
-      transition: background-color var(--transition-fast), border-color var(--transition-fast), transform var(--transition-fast), opacity var(--transition-base), visibility var(--transition-base);
-    }
-
-    html[data-theme="dark"] .ag-carousel-btn {
-      background: rgba(37, 37, 35, 0.8);
-    }
-
-    .ag-carousel-btn:hover {
-      background: var(--color-bg-primary);
-      border-color: var(--color-positive);
-      transform: translateY(-50%) scale(1.1);
-    }
-
-    .ag-carousel-btn--prev {
-      inset-inline-start: -20px;
-    }
-
-    .ag-carousel-btn--next {
-      inset-inline-end: -20px;
-    }
-
-    .ag-carousel-btn--hidden {
-      opacity: 0;
-      visibility: hidden;
-      pointer-events: none;
-    }
-
-    @media (max-width: 992px) {
-      .ag-carousel-btn {
-        display: none;
-      }
-
-      .ag-carousel-viewport {
-        padding-inline: var(--space-4);
-      }
-
-      .ag-carousel-outer::before,
-      .ag-carousel-outer::after {
-        display: none;
-      }
-    }
-
-    /* Progress Indicator Bar */
-    .ag-carousel-progress {
-      width: 120px;
-      height: 3px;
-      background: var(--color-border);
-      border-radius: var(--radius-full);
-      margin: var(--space-4) auto 0 auto;
-      overflow: hidden;
-      position: relative;
-    }
-
-    .ag-carousel-progress-fill {
-      position: absolute;
-      top: 0;
-      bottom: 0;
-      inset-inline-start: 0;
-      width: 0%;
-      background: var(--color-positive);
-      border-radius: var(--radius-full);
-      transition: width 150ms ease-out;
-    }
 
 
 
@@ -625,29 +388,7 @@
 
 
 
-    /* ==========================================================================
-       SIGN IN MODAL & DUAL-PANE LAYOUT
-       ========================================================================== */
-    .ag-modal-backdrop {
-      position: fixed;
-      inset: 0;
-      background: rgba(0, 0, 0, 0.6);
-      backdrop-filter: blur(4px);
-      -webkit-backdrop-filter: blur(4px);
-      z-index: var(--z-modal);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: var(--layout-container-padding);
-      opacity: 0;
-      visibility: hidden;
-      transition: opacity var(--transition-slow), visibility var(--transition-slow);
-    }
 
-    .ag-modal-backdrop--open {
-      opacity: 1;
-      visibility: visible;
-    }
 
   </style>
 </head>
@@ -902,53 +643,53 @@
   <!-- ==========================================================================
        SECTION 5: TRAVELER MARKETPLACE TICKERS (Rolling Marquee)
        ========================================================================== -->
-  <div class="ag-marquee-banner">
-    <div class="ag-marquee-track">
+  <div class="ag-ticker ag-ticker--gradient">
+    <div class="ag-ticker__track">
       <!-- Item 1 -->
-      <div class="ag-marquee-item">
-        <img class="ag-marquee-item__flag" src="../assets/flags/ae.svg" alt="UAE flag" />
+      <div class="ag-ticker__item ag-ticker__item--flat">
+        <img class="ag-ticker__flag ag-ticker__flag--small" src="../assets/flags/ae.svg" alt="UAE flag" />
         <span>Mert K. matched UAE ➔ Istanbul</span>
-        <span class="ag-marquee-item__savings">Saved ₺18,400 (35%)</span>
+        <span class="ag-ticker__savings">Saved ₺18,400 (35%)</span>
       </div>
       <!-- Item 2 -->
-      <div class="ag-marquee-item">
-        <img class="ag-marquee-item__flag" src="../assets/flags/us.svg" alt="US flag" />
+      <div class="ag-ticker__item ag-ticker__item--flat">
+        <img class="ag-ticker__flag ag-ticker__flag--small" src="../assets/flags/us.svg" alt="US flag" />
         <span>Sarah J. matched USA ➔ Ankara</span>
-        <span class="ag-marquee-item__savings">Saved ₺21,100 (41%)</span>
+        <span class="ag-ticker__savings">Saved ₺21,100 (41%)</span>
       </div>
       <!-- Item 3 -->
-      <div class="ag-marquee-item">
-        <img class="ag-marquee-item__flag" src="../assets/flags/de.svg" alt="Germany flag" />
+      <div class="ag-ticker__item ag-ticker__item--flat">
+        <img class="ag-ticker__flag ag-ticker__flag--small" src="../assets/flags/de.svg" alt="Germany flag" />
         <span>Volkan D. matched Germany ➔ Izmir</span>
-        <span class="ag-marquee-item__savings">Saved ₺9,800 (22%)</span>
+        <span class="ag-ticker__savings">Saved ₺9,800 (22%)</span>
       </div>
       <!-- Item 4 -->
-      <div class="ag-marquee-item">
-        <img class="ag-marquee-item__flag" src="../assets/flags/jp.svg" alt="Japan flag" />
+      <div class="ag-ticker__item ag-ticker__item--flat">
+        <img class="ag-ticker__flag ag-ticker__flag--small" src="../assets/flags/jp.svg" alt="Japan flag" />
         <span>Yuki S. matched Japan ➔ Antalya</span>
-        <span class="ag-marquee-item__savings">Saved ₺14,200 (31%)</span>
+        <span class="ag-ticker__savings">Saved ₺14,200 (31%)</span>
       </div>
 
       <!-- Duplicate for infinite seamless scroll -->
-      <div class="ag-marquee-item">
-        <img class="ag-marquee-item__flag" src="../assets/flags/ae.svg" alt="UAE flag" />
+      <div class="ag-ticker__item ag-ticker__item--flat">
+        <img class="ag-ticker__flag ag-ticker__flag--small" src="../assets/flags/ae.svg" alt="UAE flag" />
         <span>Mert K. matched UAE ➔ Istanbul</span>
-        <span class="ag-marquee-item__savings">Saved ₺18,400 (35%)</span>
+        <span class="ag-ticker__savings">Saved ₺18,400 (35%)</span>
       </div>
-      <div class="ag-marquee-item">
-        <img class="ag-marquee-item__flag" src="../assets/flags/us.svg" alt="US flag" />
+      <div class="ag-ticker__item ag-ticker__item--flat">
+        <img class="ag-ticker__flag ag-ticker__flag--small" src="../assets/flags/us.svg" alt="US flag" />
         <span>Sarah J. matched USA ➔ Ankara</span>
-        <span class="ag-marquee-item__savings">Saved ₺21,100 (41%)</span>
+        <span class="ag-ticker__savings">Saved ₺21,100 (41%)</span>
       </div>
-      <div class="ag-marquee-item">
-        <img class="ag-marquee-item__flag" src="../assets/flags/de.svg" alt="Germany flag" />
+      <div class="ag-ticker__item ag-ticker__item--flat">
+        <img class="ag-ticker__flag ag-ticker__flag--small" src="../assets/flags/de.svg" alt="Germany flag" />
         <span>Volkan D. matched Germany ➔ Izmir</span>
-        <span class="ag-marquee-item__savings">Saved ₺9,800 (22%)</span>
+        <span class="ag-ticker__savings">Saved ₺9,800 (22%)</span>
       </div>
-      <div class="ag-marquee-item">
-        <img class="ag-marquee-item__flag" src="../assets/flags/jp.svg" alt="Japan flag" />
+      <div class="ag-ticker__item ag-ticker__item--flat">
+        <img class="ag-ticker__flag ag-ticker__flag--small" src="../assets/flags/jp.svg" alt="Japan flag" />
         <span>Yuki S. matched Japan ➔ Antalya</span>
-        <span class="ag-marquee-item__savings">Saved ₺14,200 (31%)</span>
+        <span class="ag-ticker__savings">Saved ₺14,200 (31%)</span>
       </div>
     </div>
   </div>
@@ -1347,8 +1088,10 @@
   <!-- ============= DRAWER BACKDROP ============= -->
   <div class="ag-drawer-backdrop" id="turkey-drawer-backdrop"></div>
 
+  <script src="../scripts/data/app.js"></script>
   <script src="../scripts/data/i18n.js?v=1.1"></script>
   <script src="../scripts/data/currency.js?v=1.1"></script>
+  <script src="../scripts/components/i18n-controller.js"></script>
   <script src="../scripts/components/search-autocomplete.js?v=1.1"></script>
   <script src="../scripts/components/traveler-route-card.js?v=1.1"></script>
   <script src="../scripts/components/social-auth.js?v=1.1"></script>
@@ -1401,30 +1144,16 @@
       canada: { short: "Canada", flag: "ca.svg", alt: "Canada flag" }
     };
 
-    // Format Money Value helper using central currency utility
-    function formatMoney(amountTRY, currencyCode) {
-      if (window.GapLuckCurrency && typeof window.GapLuckCurrency.formatMoney === "function") {
-        return window.GapLuckCurrency.formatMoney(amountTRY, currencyCode);
-      }
-      const symbol = currencyCode === "TRY" ? "₺" : (currencyCode === "EUR" ? "€" : "$");
-      return `${symbol}${Math.round(amountTRY).toLocaleString()}`;
-    }
-
-
-
     // Toggle RTL/LTR and Language Translation
     function translate(lang) {
       currentLang = lang;
 
-      // Update HTML attributes
-      const isRtl = lang === "ar";
-      document.documentElement.setAttribute("dir", isRtl ? "rtl" : "ltr");
-      document.documentElement.style.setProperty("--rtl-flip", isRtl ? "-1" : "1");
+      // Delegate core translation loop to centralized controller
+      if (window.GapLuckI18N_Controller) {
+        window.GapLuckI18N_Controller.translate(lang);
+      }
 
-      // Update selector elements
-      document.getElementById("lang-selector").value = lang;
-      document.getElementById("lang-selector-mobile").value = lang;
-
+      // Update page-specific region selector dropdown options
       const regionSelEl = document.getElementById("region-selector");
       if (regionSelEl) {
         regionSelEl.querySelectorAll("option").forEach(opt => {
@@ -1433,60 +1162,11 @@
         });
       }
 
-      // Loop over data-i18n items
-      const elements = document.querySelectorAll("[data-i18n]");
-      elements.forEach(el => {
-        const key = el.getAttribute("data-i18n");
-        const dict = window.GapLuckI18N ? (window.GapLuckI18N[lang] || window.GapLuckI18N.en) : {};
-        const dictEn = window.GapLuckI18N ? window.GapLuckI18N.en : {};
-        let txt = dict[key] || dictEn[key] || "";
-
-        // Handle format templates (like {count}, {locked})
-        if (key === "markets_shown") {
-          const count = el.getAttribute("data-i18n-val-count");
-          const locked = el.getAttribute("data-i18n-val-locked");
-          txt = txt.replace("{count}", count).replace("{locked}", locked);
-        } else if (key === "updated") {
-          const val = el.getAttribute("data-i18n-val");
-          txt = txt.replace("{time}", val);
-        } else if (key === "last_verified") {
-          const val = el.getAttribute("data-i18n-val");
-          txt = txt.replace("{date}", val);
-        }
-        if (key === "signin_legal_html") {
-          el.innerHTML = txt;
-        } else {
-          el.textContent = txt;
-        }
-      });
-
-      // Loop over inputs with placeholders
-      const inputs = document.querySelectorAll("[data-i18n-placeholder]");
-      inputs.forEach(el => {
-        const key = el.getAttribute("data-i18n-placeholder");
-        const dict = window.GapLuckI18N ? (window.GapLuckI18N[lang] || window.GapLuckI18N.en) : {};
-        const dictEn = window.GapLuckI18N ? window.GapLuckI18N.en : {};
-        const txt = dict[key] || dictEn[key] || "";
-        el.setAttribute("placeholder", txt);
-      });
-
       // Update custom generated contents
       if (typeof currentRegion !== "undefined") {
         switchHomeRegion(currentRegion);
       } else {
         renderAllDeals();
-      }
-    }
-
-    // Open Watchlist Popover with defaults
-    
-
-        // Dynamic Toast popup generator delegates to central GapLuckToast utility
-    function showToast(message) {
-      if (window.GapLuckToast && typeof window.GapLuckToast.show === "function") {
-        window.GapLuckToast.show(message);
-      } else {
-        console.warn("GapLuckToast: Central toast component is not loaded.");
       }
     }
 
@@ -1497,7 +1177,9 @@
       const savingsTRY = baseHome - baseCheapest;
 
       const pct = Math.round((savingsTRY / baseHome) * 100);
-      const fmtSavings = formatMoney(savingsTRY, currentCurrency);
+      const fmtSavings = window.GapLuckCurrency && typeof window.GapLuckCurrency.formatMoney === "function" 
+        ? window.GapLuckCurrency.formatMoney(savingsTRY, currentCurrency)
+        : (currentCurrency === "TRY" ? "₺" : (currentCurrency === "EUR" ? "€" : "$")) + Math.round(savingsTRY).toLocaleString();
       const country = bestDeal ? (worldwideCountryMeta[bestDeal.countryKey] || worldwideCountryMeta.uae) : worldwideCountryMeta.uae;
 
       const countryNameLocal = bestDeal ? (regionNames[currentLang][bestDeal.countryKey] || country.short) : "UAE";
@@ -2278,383 +1960,7 @@
       }
     }
 
-    // Price History Interactive Graphic
 
-    // === PORTED PRICE HISTORY CHART CONTROLLER ===
-    function setupPriceHistoryChart() {
-      const chartViewport = document.getElementById("chart-viewport");
-      const trackerLine = document.getElementById("chart-tracker-line");
-      const tooltip = document.getElementById("chart-tooltip");
-      const dropdownTrigger = document.getElementById("chart-filter-trigger");
-      const dropdownMenu = document.getElementById("chart-filter-dropdown");
-      const rangeButtons = document.querySelectorAll(".ag-chart-controls .ag-chart-btn");
-
-      if (!chartViewport) return;
-
-      const countries = ["uae", "usa", "germany", "turkey"];
-      const xCoords = [50, 225, 400, 575, 750];
-
-      // Historical dataset in TRY
-      const chartData = {
-        30: {
-          dates: {
-            en: ["May 25", "May 30", "Jun 04", "Jun 09", "Jun 15"],
-            tr: ["25 May", "30 May", "4 Haz", "9 Haz", "15 Haz"],
-            ar: ["٢٥ مايو", "٣٠ مايو", "٤ يونيو", "٩ يونيو", "١٥ يونيو"]
-          },
-          uae: [32000, 31800, 31600, 31500, 31500],
-          usa: [35000, 34800, 34700, 34600, 34500],
-          germany: [37500, 37400, 37300, 37200, 37200],
-          turkey: [62000, 62300, 62600, 62900, 63000]
-        },
-        90: {
-          dates: {
-            en: ["Mar 15", "Apr 15", "May 15", "Jun 01", "Jun 15"],
-            tr: ["15 Mar", "15 Nis", "15 May", "1 Haz", "15 Haz"],
-            ar: ["١٥ مارس", "١٥ أبريل", "١٥ مايو", "١ يونيو", "١٥ يونيو"]
-          },
-          uae: [33000, 32500, 32000, 31800, 31500],
-          usa: [35500, 36000, 35200, 34800, 34500],
-          germany: [38000, 37800, 37600, 37400, 37200],
-          turkey: [58000, 59500, 61000, 62200, 63000]
-        },
-        180: {
-          dates: {
-            en: ["Dec 15", "Jan 15", "Feb 15", "Mar 15", "Jun 15"],
-            tr: ["15 Ara", "15 Oca", "15 Şub", "15 Mar", "15 Haz"],
-            ar: ["١٥ ديسمبر", "١٥ يناير", "١٥ فبراير", "١٥ مارس", "١٥ يونيو"]
-          },
-          uae: [34000, 33500, 33200, 33000, 31500],
-          usa: [36000, 36200, 35800, 35500, 34500],
-          germany: [39000, 38500, 38200, 38000, 37200],
-          turkey: [52000, 54500, 56000, 58000, 63000]
-        }
-      };
-
-      let currentRange = 90;
-
-      // Coordinate mapping config
-      const minVal = 20000;
-      const maxVal = 70000;
-      const minTargetY = 210;
-      const maxTargetY = 40;
-
-      function valueToY(val) {
-        return minTargetY - ((val - minVal) / (maxVal - minVal)) * (minTargetY - maxTargetY);
-      }
-
-      // Smooth Bezier path calculation
-      function getBezierPath(points) {
-        if (points.length === 0) return "";
-        let d = `M ${points[0].x} ${points[0].y}`;
-        for (let i = 0; i < points.length - 1; i++) {
-          const p0 = points[i];
-          const p1 = points[i + 1];
-          const cp1x = p0.x + (p1.x - p0.x) / 3;
-          const cp1y = p0.y;
-          const cp2x = p0.x + 2 * (p1.x - p0.x) / 3;
-          const cp2y = p1.y;
-          d += ` C ${cp1x} ${cp1y}, ${cp2x} ${cp2y}, ${p1.x} ${p1.y}`;
-        }
-        return d;
-      }
-
-      // Exact Bezier interpolation for Y value
-      function interpolateY(x, p0, p1) {
-        const t = (x - p0.x) / (p1.x - p0.x);
-        return Math.pow(1 - t, 3) * p0.y +
-          3 * Math.pow(1 - t, 2) * t * p0.y +
-          3 * (1 - t) * Math.pow(t, 2) * p1.y +
-          Math.pow(t, 3) * p1.y;
-      }
-
-      // Linear price interpolation
-      function interpolatePrice(x, x0, x1, y0, y1) {
-        const t = (x - x0) / (x1 - x0);
-        return y0 + t * (y1 - y0);
-      }
-
-      // Update curves and dates
-      function updateChart() {
-        const data = chartData[currentRange];
-
-        // Update curves
-        countries.forEach(c => {
-          const path = document.getElementById(`line-${c}`);
-          if (!path) return;
-          const prices = data[c];
-          const points = prices.map((val, idx) => ({ x: xCoords[idx], y: valueToY(val) }));
-          path.setAttribute("d", getBezierPath(points));
-        });
-
-        // Update x-axis date labels
-        const svg = chartViewport.querySelector(".ag-chart-svg");
-        if (svg) {
-          const labels = svg.querySelectorAll(".ag-chart-axis-label");
-          const activeDates = data.dates[currentLang] || data.dates.en;
-          let dateIdx = 0;
-          labels.forEach(label => {
-            if (label.getAttribute("y") === "235") {
-              if (dateIdx < activeDates.length) {
-                label.textContent = activeDates[dateIdx];
-                dateIdx++;
-              }
-            }
-          });
-        }
-      }
-
-      // Range buttons listeners
-      rangeButtons.forEach(btn => {
-        btn.addEventListener("click", () => {
-          rangeButtons.forEach(b => b.classList.remove("ag-chart-btn--active"));
-          btn.classList.add("ag-chart-btn--active");
-          currentRange = parseInt(btn.getAttribute("data-days"), 10) || 90;
-          updateChart();
-        });
-      });
-
-      // Filter dropdown toggle
-      if (dropdownTrigger && dropdownMenu) {
-        dropdownTrigger.addEventListener("click", (e) => {
-          e.stopPropagation();
-          dropdownMenu.classList.toggle("ag-chart-dropdown-menu--open");
-        });
-
-        document.addEventListener("click", (e) => {
-          if (!dropdownTrigger.contains(e.target) && !dropdownMenu.contains(e.target)) {
-            dropdownMenu.classList.remove("ag-chart-dropdown-menu--open");
-          }
-        });
-      }
-
-      // Filter checkbox change listener
-      if (dropdownMenu) {
-        dropdownMenu.querySelectorAll("input[type='checkbox']").forEach(checkbox => {
-          checkbox.addEventListener("change", () => {
-            const country = checkbox.value;
-            const isChecked = checkbox.checked;
-
-            // Show/Hide curve path
-            const path = document.getElementById(`line-${country}`);
-            if (path) {
-              path.style.display = isChecked ? "block" : "none";
-            }
-
-            // Dim/Highlight legend
-            const legend = document.getElementById(`legend-${country}`);
-            if (legend) {
-              legend.style.opacity = isChecked ? "1" : "0.4";
-            }
-
-            // Hide dot if unchecked
-            const dot = document.getElementById(`dot-chart-${country}`);
-            if (dot && !isChecked) {
-              dot.style.display = "none";
-            }
-          });
-        });
-      }
-
-      // Mouse interactive movement
-      const svg = chartViewport.querySelector(".ag-chart-svg");
-      if (svg) {
-        svg.addEventListener("mousemove", (e) => {
-          const rect = svg.getBoundingClientRect();
-          const mouseX = ((e.clientX - rect.left) / rect.width) * 800; // Map clientX to SVG viewBox space (0-800)
-
-          if (mouseX < 50 || mouseX > 750) {
-            hideTooltip();
-            return;
-          }
-
-          // Show tracker line
-          trackerLine.setAttribute("x1", mouseX);
-          trackerLine.setAttribute("x2", mouseX);
-          trackerLine.style.display = "block";
-
-          const data = chartData[currentRange];
-          const closestIdx = Math.min(Math.max(Math.round((mouseX - 50) / 175), 0), 4);
-          const activeDates = data.dates[currentLang] || data.dates.en;
-          const dateStr = activeDates[closestIdx];
-
-          let tooltipHtml = `<div style="font-weight:var(--font-weight-bold);margin-bottom:var(--space-2);text-align:center;border-bottom:1px solid var(--color-border-strong);padding-bottom:var(--space-1);">${dateStr}</div>`;
-          let hasActive = false;
-
-          countries.forEach(c => {
-            const checkbox = dropdownMenu ? dropdownMenu.querySelector(`input[value='${c}']`) : null;
-            const isChecked = checkbox ? checkbox.checked : true;
-            const path = document.getElementById(`line-${c}`);
-
-            if (isChecked && path) {
-              const prices = data[c];
-              const points = prices.map((val, idx) => ({ x: xCoords[idx], y: valueToY(val) }));
-
-              // Find adjacent points for interpolation
-              let p0 = points[0], p1 = points[1];
-              let pr0 = prices[0], pr1 = prices[1];
-              let segIdx = 0;
-              for (let i = 0; i < xCoords.length - 1; i++) {
-                if (mouseX >= xCoords[i] && mouseX <= xCoords[i + 1]) {
-                  p0 = points[i];
-                  p1 = points[i + 1];
-                  pr0 = prices[i];
-                  pr1 = prices[i + 1];
-                  segIdx = i;
-                  break;
-                }
-              }
-
-              // Position interactive dot exactly on curve
-              const y = interpolateY(mouseX, p0, p1);
-              const dot = document.getElementById(`dot-chart-${c}`);
-              if (dot) {
-                dot.setAttribute("cx", mouseX);
-                dot.setAttribute("cy", y);
-                dot.style.display = "block";
-              }
-
-              // Interpolate price for tooltip
-              const price = interpolatePrice(mouseX, xCoords[segIdx], xCoords[segIdx + 1], pr0, pr1);
-              const formattedPrice = formatMoney(price, currentCurrency);
-
-              // Map country codes to readable names for tooltip
-              let displayName = c.toUpperCase();
-              if (c === "uae") displayName = currentLang === "tr" ? "BAE (En Ucuz)" : (currentLang === "ar" ? "الإمارات (الأرخص)" : "UAE (Cheapest)");
-              if (c === "usa") displayName = "USA";
-              if (c === "germany") displayName = currentLang === "tr" ? "Almanya" : (currentLang === "ar" ? "ألمانيا" : "Germany");
-              if (c === "turkey") displayName = currentLang === "tr" ? "Türkiye (Ev)" : (currentLang === "ar" ? "تركيا (الوطن)" : "Turkey (Home)");
-
-              const dotColor = c === "uae" ? "#2DBF8E" : (c === "usa" ? "#105E9B" : (c === "germany" ? "#BA7517" : "#C94040"));
-
-              tooltipHtml += `
-                <div class="ag-chart-tooltip__row">
-                  <div style="display:flex;align-items:center;gap:var(--space-2);">
-                    <span style="width:8px;height:8px;border-radius:50%;background-color:${dotColor};display:inline-block;"></span>
-                    <span>${displayName}:</span>
-                  </div>
-                  <span style="font-weight:var(--font-weight-semibold);">${formattedPrice}</span>
-                </div>
-              `;
-              hasActive = true;
-            } else {
-              const dot = document.getElementById(`dot-chart-${c}`);
-              if (dot) dot.style.display = "none";
-            }
-          });
-
-          if (hasActive) {
-            // Position tooltip dynamically
-            tooltip.innerHTML = tooltipHtml;
-            tooltip.style.display = "block";
-
-            // Adjust position: offset horizontally to not block cursor, and center vertically
-            const tooltipRect = tooltip.getBoundingClientRect();
-            const parentRect = chartViewport.getBoundingClientRect();
-            const localX = e.clientX - parentRect.left;
-            const localY = e.clientY - parentRect.top;
-
-            let tooltipLeft = localX + 15;
-            // Prevent right edge clipping
-            if (tooltipLeft + tooltipRect.width > parentRect.width) {
-              tooltipLeft = localX - tooltipRect.width - 15;
-            }
-
-            let tooltipTop = localY - tooltipRect.height / 2;
-            // Prevent top/bottom clipping
-            if (tooltipTop < 10) tooltipTop = 10;
-            if (tooltipTop + tooltipRect.height > parentRect.height - 10) {
-              tooltipTop = parentRect.height - tooltipRect.height - 10;
-            }
-
-            tooltip.style.left = `${tooltipLeft}px`;
-            tooltip.style.top = `${tooltipTop}px`;
-          } else {
-            hideTooltip();
-          }
-        });
-
-        svg.addEventListener("mouseleave", hideTooltip);
-      }
-
-      function hideTooltip() {
-        trackerLine.style.display = "none";
-        countries.forEach(c => {
-          const dot = document.getElementById(`dot-chart-${c}`);
-          if (dot) dot.style.display = "none";
-        });
-        tooltip.style.display = "none";
-      }
-
-      // Sync with global language changes
-      window.addEventListener("gl-language-change", () => {
-        updateChart();
-      });
-
-      // Initial execution
-      updateChart();
-    }
-
-    // Sign In Modal Setup and Controllers
-    function setupSigninModal() {
-      const backdrop = document.getElementById("signin-modal-backdrop");
-      const closeBtn = document.getElementById("signin-close-btn");
-      const signinBtns = document.querySelectorAll(".ag-navbar__btn-signin");
-      const form = document.getElementById("signin-form");
-
-      if (!backdrop) return;
-
-      function openModal() {
-        backdrop.classList.add("ag-modal-backdrop--open");
-        document.body.style.overflow = "hidden"; // Prevent background scroll
-
-        // Auto-focus email input with key clearance
-        setTimeout(() => {
-          const emailInput = document.getElementById("signin-email");
-          if (emailInput) emailInput.focus();
-        }, 100);
-      }
-
-      function closeModal() {
-        backdrop.classList.remove("ag-modal-backdrop--open");
-        document.body.style.overflow = "";
-      }
-
-      signinBtns.forEach(btn => {
-        btn.addEventListener("click", openModal);
-      });
-
-      if (closeBtn) {
-        closeBtn.addEventListener("click", closeModal);
-      }
-
-      backdrop.addEventListener("click", (e) => {
-        if (e.target === backdrop) {
-          closeModal();
-        }
-      });
-
-      // ESC key to close
-      window.addEventListener("keydown", (e) => {
-        if (e.key === "Escape") {
-          closeModal();
-        }
-      });
-
-      // Form submission mock alert
-      if (form) {
-        form.addEventListener("submit", (e) => {
-          e.preventDefault();
-          const emailInput = document.getElementById("signin-email");
-          const email = emailInput ? emailInput.value : "";
-
-          alert(currentLang === "tr" ? `Giriş başarılı! Hoş geldiniz: ${email}` :
-            (currentLang === "ar" ? `تم تسجيل الدخول بنجاح! مرحبًا بك: ${email}` :
-              `Login successful! Welcome: ${email}`));
-          closeModal();
-        });
-      }
-    }
 
     window.addEventListener("DOMContentLoaded", () => {
       setupWatchlist();
