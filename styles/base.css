@@ -1,5 +1,9 @@
 /* Base HTML element defaults for GapLuck prototypes */
 
+html {
+  overflow-x: clip;
+}
+
 body {
   font-family: var(--font-family-base);
   font-size: var(--text-base);
@@ -8,6 +12,7 @@ body {
   background-color: var(--color-bg-primary);
   color: var(--color-text-primary);
   transition: background-color var(--transition-base), color var(--transition-base);
+  overflow-x: clip; /* Prevent horizontal scrolling while preserving position: sticky */
 }
 
 /* Headings */

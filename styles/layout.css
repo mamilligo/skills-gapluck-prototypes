@@ -991,7 +991,7 @@ html[dir="rtl"] {
   .ag-container {
     max-width: 100vw;
     box-sizing: border-box;
-    padding-inline: var(--space-4);
+    padding-inline: var(--space-4) !important;
   }
 
   .ag-p-6:not(.ag-container) {
@@ -1321,6 +1321,7 @@ html[dir="rtl"] {
     margin-top: 4px;
     display: flex;
     flex-direction: row;
+    flex-wrap: wrap;
     gap: var(--space-2);
     align-items: center;
     margin-inline-end: 0;
