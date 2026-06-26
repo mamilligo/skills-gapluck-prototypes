@@ -776,8 +776,13 @@
         });
 
         // Handle viewport resize or orientation changes to keep active card centered
+        let lastWidth = window.innerWidth;
         window.addEventListener('resize', () => {
           if (isMobile()) {
+            const currentWidth = window.innerWidth;
+            if (currentWidth === lastWidth) return; // Skip height-only resizes (mobile address bar shifts)
+            lastWidth = currentWidth;
+
             if (animationFrameId) {
               cancelAnimationFrame(animationFrameId);
               animationFrameId = null;
