@@ -775,20 +775,19 @@
           });
         });
 
-        // Handle viewport resize or orientation changes to keep active card centered
-        let lastWidth = window.innerWidth;
+        // Handle viewport resize or orientation changes with a 200ms debounce
+        let resizeTimeout;
         window.addEventListener('resize', () => {
           if (isMobile()) {
-            const currentWidth = window.innerWidth;
-            if (currentWidth === lastWidth) return; // Skip height-only resizes (mobile address bar shifts)
-            lastWidth = currentWidth;
-
-            if (animationFrameId) {
-              cancelAnimationFrame(animationFrameId);
-              animationFrameId = null;
-            }
-            updateThresholds();
-            grid.scrollLeft = getCardCenterOffset(currentActiveIndex);
+            if (resizeTimeout) clearTimeout(resizeTimeout);
+            resizeTimeout = setTimeout(() => {
+              if (animationFrameId) {
+                cancelAnimationFrame(animationFrameId);
+                animationFrameId = null;
+              }
+              updateThresholds();
+              grid.scrollLeft = getCardCenterOffset(currentActiveIndex);
+            }, 200);
           }
         });
       }

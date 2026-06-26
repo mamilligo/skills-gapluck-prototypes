@@ -163,10 +163,8 @@
       position: relative;
       overflow: hidden;
       /* Generous vertical padding: search is the hero, give it breathing room */
-      padding-block: clamp(2rem, 5vw, 3.5rem) clamp(4.5rem, 11vw, 9rem);
+      padding-block: clamp(4rem, 10vw, 8rem);
       text-align: center;
-      min-height: calc(100vh - var(--header-height, 72px));
-      min-height: calc(100svh - var(--header-height, 72px));
       display: flex;
       flex-direction: column;
       justify-content: center;
@@ -1493,23 +1491,19 @@
 
       /* Compress Hero Section vertical padding */
       .ag-hero {
-        min-height: calc(100vh - 72px);
-        min-height: calc(100svh - 72px);
         display: flex;
         flex-direction: column;
         justify-content: center;
         box-sizing: border-box;
-        padding-block: var(--space-4);
+        padding-block: clamp(4rem, 8vw, 6rem);
       }
 
       .ag-lp-section {
-        min-height: calc(100vh - 72px);
-        min-height: calc(100svh - 72px);
         display: flex;
         flex-direction: column;
         justify-content: center;
         box-sizing: border-box;
-        padding-block: var(--space-4);
+        padding-block: clamp(4rem, 8vw, 6rem);
       }
 
       .ag-traveler-section {
